@@ -1,0 +1,101 @@
+{
+  "record_kind": "received_attachment_manifest",
+  "source_title": "Corrija este e-mail",
+  "retrieved_on": "2026-10-31",
+  "nominal_capture_date": "2026-10-31",
+  "date_basis": "original_filename; not independently authenticated",
+  "processing": "No content changes after retrieval. Supplied crops preserved.",
+  "authentication_limit": "Hashes identify received bytes, not authenticity of the original capture.",
+  "files": [
+    {
+      "id": "S01",
+      "original_name": "image(20261031-181806).png",
+      "published_path": "screenshots/s01-instruction-inclusion.png",
+      "bytes": 25975,
+      "width": 1238,
+      "height": 174,
+      "sha256": "984b599e7e5bdb5aeb8814516f78d8198e3cfca2dce1193a31c8b25b9a5bbed4"
+    },
+    {
+      "id": "S02",
+      "original_name": "image(20261031-181915).png",
+      "published_path": "screenshots/s02-skills-and-implicit-context.png",
+      "bytes": 73702,
+      "width": 1139,
+      "height": 543,
+      "sha256": "a3fd13366b705e85bb60ada4fdcc3e1c253590e77e9b4a20205dd2f2106b9b85"
+    },
+    {
+      "id": "S03",
+      "original_name": "image(20261031-182100).png",
+      "published_path": "screenshots/s03-compress-output.png",
+      "bytes": 14824,
+      "width": 1112,
+      "height": 76,
+      "sha256": "c4365a03a7f6263da3db6a7dd86c5a5ec7164ef9485abbd2c43f324229d7aab3"
+    },
+    {
+      "id": "S04",
+      "original_name": "image(20261031-182135).png",
+      "published_path": "screenshots/s04-terminal-compaction-disabled.png",
+      "bytes": 22078,
+      "width": 1288,
+      "height": 95,
+      "sha256": "70300636828c46a5328c9dd949ef156fc2688e776b25bfa7a78212e44bb37fe3"
+    },
+    {
+      "id": "S05",
+      "original_name": "image(20261031-182446).png",
+      "published_path": "screenshots/s05-model-capability-overrides.png",
+      "bytes": 43608,
+      "width": 1166,
+      "height": 194,
+      "sha256": "0560b22b4f9a01731bac19ba20103111af1547a1294bb4c02ef2c0dce93c3c2c"
+    },
+    {
+      "id": "S06",
+      "original_name": "image(20261031-182630).png",
+      "published_path": "screenshots/s06-omit-attachments-disabled.png",
+      "bytes": 14480,
+      "width": 860,
+      "height": 76,
+      "sha256": "8227e542164796ad1067171ff8982fa297dd6fb45cc9e479d0bf8ec2e84104a4"
+    },
+    {
+      "id": "S07",
+      "original_name": "image(20261031-182713).png",
+      "published_path": "screenshots/s07-alternate-prompts-disabled.png",
+      "bytes": 64869,
+      "width": 1087,
+      "height": 410,
+      "sha256": "1c813c7dd66f870a2202096a1773bc08f9b376d5e938b0bc26491cea71fb8890"
+    },
+    {
+      "id": "S08",
+      "original_name": "image(20261031-182755).png",
+      "published_path": "screenshots/s08-model-and-code-search.png",
+      "bytes": 57413,
+      "width": 554,
+      "height": 462,
+      "sha256": "cdf4a862b22cfd073274cb379bc20926a6fc60272f77dfff8f5404690438b73b"
+    },
+    {
+      "id": "S09",
+      "original_name": "image(20261031-182833).png",
+      "published_path": "screenshots/s09-gemini-options-disabled.png",
+      "bytes": 35955,
+      "width": 594,
+      "height": 241,
+      "sha256": "ed62eb94c70a49d41ed99b7f6ac45a23cf2fc6b1dcd86cdd1bf14a9cc3a67cdb"
+    },
+    {
+      "id": "S10",
+      "original_name": "image(20261031-170902).png",
+      "published_path": "screenshots/s10-web-personalization.png",
+      "bytes": 53216,
+      "width": 1203,
+      "height": 487,
+      "sha256": "c93ac55c5a59344efbe9e5505b7b080716d1091a53bc3d2fb9217fc482795c4c"
+    }
+  ]
+}

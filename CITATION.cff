@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "Ao citar, identifique a versão ou o commit consultado. Este é um paper de posição com proposta metodológica, sem benchmark próprio executado."
+type: software
+title: "A conta da configuração: complexidade, integridade do prompt e produtividade de agentes em IDEs"
+authors:
+  - family-names: "De Luca"
+    given-names: "Juninho"
+version: 0.1.0
+date-released: 2026-10-31
+url: "https://github.com/juninhodeluca/ide-agent-configuration-tax"
+abstract: "Paper técnico de posição, estudo motivador com screenshots e proposta de PBoM por requisição, modelo de break-even e metodologia de benchmark para agentes em IDEs. Não revisado por pares. Sem resultados experimentais próprios nesta versão."
+keywords:
+  - coding agents
+  - configuration complexity
+  - prompt provenance
+  - Prompt Bill of Materials
+  - configuration drift
+  - developer productivity
+preferred-citation:
+  type: report
+  title: "A conta da configuração: complexidade, integridade do prompt e produtividade de agentes em IDEs"
+  authors:
+    - family-names: "De Luca"
+      given-names: "Juninho"
+  year: 2026
+  version: 0.1.0
+  url: "https://github.com/juninhodeluca/ide-agent-configuration-tax/blob/main/paper.md"

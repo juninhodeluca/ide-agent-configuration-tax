@@ -1,0 +1,7 @@
+# Registros de futuras execuções podem conter dados privados.
+/benchmark/private/
+/benchmark/raw/
+/.pbom/
+/.env
+/.env.*
+__pycache__/
