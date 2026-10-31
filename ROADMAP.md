@@ -8,7 +8,7 @@
 - [x] Redigir README e paper substancial em Markdown.
 - [x] Formalizar break-even, perfil PBoM e protocolo de benchmark.
 - [x] Entregar templates vazios de coleta, sem resultados fictícios.
-- [ ] Publicar o repositório GitHub com o material desta versão.
+- [x] Publicar o repositório GitHub com o material desta versão.
 
 ## Trabalho empírico futuro — fora desta publicação
 
