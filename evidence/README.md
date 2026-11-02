@@ -1,8 +1,8 @@
 # Evidence Catalog — Settings Screenshots and Scope
 
-The repository retains nine author-supplied screenshots of agent and model settings in VS Code. Original filenames, image dimensions, sizes and SHA-256 fingerprints are documented in [manifest.json](manifest.json). File names suggest October 31, 2026 but do not authenticate system time, release version, or request execution.
+The repository retains nine author-supplied screenshots of agent and model settings in VS Code. **They represent only a small, deliberately selected sample of a much larger configuration surface—not a complete list of settings that can influence the model request.** Original filenames, image dimensions, sizes and SHA-256 fingerprints are documented in [manifest.json](manifest.json). File names suggest October 31, 2026 but do not authenticate system time, release version, or request execution.
 
-**Critical distinction:** a visible option—even one marked enabled—does not establish that it applied to a particular request. Product descriptions sometimes expressly limit features to the **Local harness** or **Agent Host**. This is a selected screenshot series, not a complete settings audit or a trace of an actual model request.
+**Critical distinction:** a visible option—even one marked enabled—does not establish that it applied to a particular request. Product descriptions sometimes expressly limit features to the **Local harness** or **Agent Host**. Many additional options and instruction sources exist outside these images—including those provided by applications, integrations, plugins, extensions, memory and agent harnesses. Some may affect the effective request payload; others affect execution or tool behavior. **This is a selected screenshot series, not a complete settings audit, an exhaustive inventory, or a trace of an actual model request.**
 
 ## S01 — Instruction inclusion
 
@@ -66,9 +66,9 @@ The author explicitly supplied the original Codex global instructions for public
 
 These screenshots are **not evidence of prompt injection**, a compromised client, an adversarial extension, an unauthorized rewrite, or any actual model-policy violation. Their intended evidentiary role is much narrower:
 
-**They document the number and heterogeneity of configuration controls through which an IDE, extension, app, skill or harness may potentially select instructions, include context, or transform intermediate content before an LLM receives an effective request.**
+**They illustrate a few examples from the larger and non-exhaustively documented set of configuration controls through which an IDE, extension, app, skill or harness may potentially select instructions, include context, or transform intermediate content before an LLM receives an effective request. Other relevant controls are not pictured.**
 
-Multiple options control distinct operations and execution contexts. Some are enabled; others are disabled. The available images do not prove which settings affected any particular request, and cannot establish a longitudinal growth rate.
+The nine screenshots must not be interpreted as the total number of available options, affected components or potential transformations. Multiple options control distinct operations and execution contexts. Some are enabled; others are disabled. The available images do not prove which settings affected any particular request, and cannot establish a longitudinal growth rate.
 
 This complexity can be difficult for a user to track. It raises two kinds of **conditional uncertainty**:
 
