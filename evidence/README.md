@@ -1,8 +1,8 @@
 # Evidence Catalog — Settings Screenshots and Scope
 
-The repository retains ten author-supplied screenshots: nine captures of VS Code AI settings and one Codex Web personalization view. Original filenames, image dimensions, sizes and SHA-256 fingerprints are documented in [manifest.json](manifest.json). File names suggest October 31, 2026 but do not authenticate system time, release version, or request execution.
+The repository retains nine author-supplied screenshots of agent and model settings in VS Code. Original filenames, image dimensions, sizes and SHA-256 fingerprints are documented in [manifest.json](manifest.json). File names suggest October 31, 2026 but do not authenticate system time, release version, or request execution.
 
-**Critical distinction:** a visible option—even one marked enabled—does not establish that it applied to a particular request. Product descriptions sometimes expressly limit features to the **Local harness** or **Agent Host**. This is a selected screenshot series, not a complete settings audit or network trace.
+**Critical distinction:** a visible option—even one marked enabled—does not establish that it applied to a particular request. Product descriptions sometimes expressly limit features to the **Local harness** or **Agent Host**. This is a selected screenshot series, not a complete settings audit or a trace of an actual model request.
 
 ## S01 — Instruction inclusion
 
@@ -58,20 +58,25 @@ The repository retains ten author-supplied screenshots: nine captures of VS Code
 
 **Observed:** three Gemini prompt/tool options unchecked. Some descriptions are cropped; missing text is not reconstructed.
 
-## S10 — Codex Web personalization
-
-![S10: Codex personalized instructions in Web settings](screenshots/s10-web-personalization.png)
-
-**Observed:** a Web settings page promises Codex instructions synchronized between desktop and web, with text headed “GLOBAL AGENT — OPERATING SYSTEM.” The author reports that the Codex Desktop Linux editor displayed different, more recently edited instructions. **Not established:** whether both screens should reference the same storage object or whether synchronization failed; this requires a controlled bidirectional test with versions, account/host and saved timestamps.
-
 ## Primary example: defensive global instructions
 
 The author explicitly supplied the original Codex global instructions for publication as a research example. The text and its interpretation are in [Case Study A](../case-studies/defensive-global-instructions.md). It is evidence of the **author's stated protective intent and chosen textual guardrails**, not evidence of the message role assigned by a particular harness.
 
 ## Why these images accompany the account
 
-The screenshots are included as **context for a personal uncertainty about instruction composition and authority**, not as evidence of a security incident. They illustrate how an ordinary user encounters settings governing instruction selection, implicit context, extension behavior, and transformations without necessarily knowing what reached the model in an individual session.
+These screenshots are **not evidence of prompt injection**, a compromised client, an adversarial extension, an unauthorized rewrite, or any actual model-policy violation. Their intended evidentiary role is much narrower:
 
-The central story concerns the author's attempt to defend global operating preferences with the phrase `IMMUTABLE`, followed by concern that this defensive wording might appear to conflict with instruction hierarchy or alignment expectations. The [full first-person account](../paper.md) and [verbatim instructions](../case-studies/defensive-global-instructions.md) explain that sequence.
+**They document the number and heterogeneity of configuration controls through which an IDE, extension, app, skill or harness may potentially select instructions, include context, or transform intermediate content before an LLM receives an effective request.**
 
-No screenshot proves malicious injection, covert prompt rewriting, misalignment classification, or a confirmed Desktop/Web synchronization defect. **This repository does not propose any testing framework or specific investigation protocol**; it invites independent researchers to interpret the evidence through their own methods.
+Multiple options control distinct operations and execution contexts. Some are enabled; others are disabled. The available images do not prove which settings affected any particular request, and cannot establish a longitudinal growth rate.
+
+This complexity can be difficult for a user to track. It raises two kinds of **conditional uncertainty**:
+
+1. **Suppression:** a transformation or context-management step might omit relevant information, causing the model to answer without a necessary constraint or warning.
+2. **Addition:** an automatic instruction source might introduce directions that conflict with the user's explicit operating preferences, potentially changing the resulting output or action.
+
+Neither scenario is claimed to have occurred here. They are questions raised by the visible configuration surface. A checked option does not prove execution, and tool-output compression does not mean the original user message was edited.
+
+If a materially altered effective request ultimately leads to a policy, contractual, or operational violation, **the mere association of that request with a user's account does not establish who authored or knowingly authorized the instruction responsible**. The [main account](../paper.md) asks researchers to consider how responsibility can be fairly attributed without assuming automatic user innocence or automatic user culpability.
+
+The [verbatim global instructions](../case-studies/defensive-global-instructions.md) are preserved separately as the author's defensive response to this uncertainty, not as an injection payload.
