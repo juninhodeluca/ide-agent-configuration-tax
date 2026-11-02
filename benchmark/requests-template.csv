@@ -1,1 +1,0 @@
-request_id,run_id,agent_id,parent_request_id,timestamp_utc,request_kind,model_id,model_revision,input_tokens,cached_input_tokens,output_tokens,reasoning_tokens,usage_source,capture_boundary,pbom_record_id,latency_s,cost_amount,currency,coverage_note
