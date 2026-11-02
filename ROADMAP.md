@@ -1,33 +1,33 @@
-# Research Roadmap
+# Editorial History and Scope
 
-## Published — v0.1.0 (October 31, 2026; initial scope)
+This repository is now a **case report and invitation to discussion**, not a research tooling project. No external research contacts, GitHub issues, or formal vulnerability disclosures have been initiated from this publication.
 
-- [x] Collect screenshots and source references.
-- [x] Publish an initial Portuguese position paper on agent-configuration complexity and productivity.
-- [x] Draft a PBoM profile and illustrative synthetic JSON.
-- [x] Publish supplementary productivity benchmarking templates.
+## Version 0.1.0 — October 31, 2026
 
-## Published — v0.2.0 (November 2, 2026; research correction)
+- Initial account of IDE agent configuration complexity.
+- Paper framed around developer productivity and token/configuration overhead.
+- Nine VS Code settings screenshots and one Codex Web personalization screenshot collected.
+- Draft PBoM and experimental benchmarking materials produced.
 
-- [x] Reframe the main research problem as **user–LLM instruction integrity and provenance**.
-- [x] Rewrite the paper and README in English.
-- [x] Include the author's **verbatim defensive global Codex instructions** as a primary case study.
-- [x] Distinguish user intent, self-declared `IMMUTABLE` priority, transport role, runtime enforcement and safety alignment.
-- [x] Update the PBoM proposal to focus on source attribution, consent, transformations and conflict resolution.
-- [x] Replace the primary benchmark with a **security-centered evaluation protocol**.
-- [x] Translate evidence/source documentation and publication metadata into English.
-- [x] Remove anecdotal token volume and productivity break-even from the central thesis.
+## Version 0.2.0 — November 2, 2026
 
-## Research and engineering — not yet performed
+- Main focus corrected to instruction integrity, provenance, trust boundaries, and the ambiguity of `IMMUTABLE` global instructions.
+- Paper translated to English.
+- Author's global Codex instructions added verbatim as an example.
+- Additional PBoM and test proposals drafted.
 
-- [ ] Build a privacy-preserving **request-level provenance capture prototype**.
-- [ ] Collect versioned, effective configuration snapshots for Local/Agent Host and Codex paths.
-- [ ] Instrument source inclusion and before/after request transformations within a defined observation boundary.
-- [ ] Test benign conflict fixtures with the original case's defensive themes.
-- [ ] Quantify provenance accuracy, false alarms, precedence/role accuracy and runtime-permission enforcement.
-- [ ] Validate receipt authenticity and privacy properties (avoid raw prompt leakage).
-- [ ] Compare observed configuration drift over a predefined longitudinal window.
-- [ ] Explore interoperability with prior PBoM schemas.
-- [ ] Seek external academic/security review and decide on repository license.
+## Version 0.3.0 — November 2, 2026
 
-**No issues have been opened in OpenAI, Microsoft or VS Code repositories as part of this project.** External discussion is a distinct follow-up after the author reviews this version.
+- [x] Rewrite paper as a **first-person account** with context, motivations, uncertainty, and the concern about perceived instruction-hierarchy violations.
+- [x] Keep the author's original instructions intact and retain all screenshots.
+- [x] Broaden scope beyond IDEs to plugins, applications, extensions and agent harnesses.
+- [x] Remove active PBoM, synthetic example, proposed benchmark, and data-template materials.
+- [x] Avoid proposing that external researchers adopt a specific investigative method.
+- [x] Maintain clear boundaries between observation, author report, and what remains unverified.
+- [x] Align README, references, evidence narrative, and citation metadata with the new form.
+
+## Potential future discussions
+
+If the author chooses, share the account with relevant AI safety, alignment, and agent-research teams and invite their interpretation. Any independent analysis or technical investigation should be defined by the receiving teams.
+
+**The history of prior technical proposals remains available via Git history; the current branch does not present them as active work.**
