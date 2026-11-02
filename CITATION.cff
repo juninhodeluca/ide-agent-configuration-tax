@@ -1,29 +1,29 @@
 cff-version: 1.2.0
-message: "When citing, include the version or commit. This is a non-peer-reviewed technical position paper; no controlled exploit or benchmark was performed."
+message: "Please cite the version or commit. This is a first-person technical case report and an invitation to discussion, not a verified security incident or peer-reviewed study."
 type: software
-title: "Instruction Integrity at the IDE–LLM Boundary: Configuration Complexity, Trust Boundaries, and the Case for a Prompt Bill of Materials"
+title: "When Defensive Agent Instructions Became a Source of Uncertainty: A First-Person Account"
 authors:
   - family-names: "De Luca"
     given-names: "Juninho"
-version: 0.2.0
+version: 0.3.0
 date-released: 2026-11-02
 url: "https://github.com/juninhodeluca/ide-agent-configuration-tax"
-abstract: "A technical position paper on user-to-LLM instruction integrity, provenance, effective authority and agentic IDE request composition. Presents a verbatim defensive global-instructions case and proposes a request-level PBoM and security-focused evaluation protocol. No unauthorized prompt rewrite or successful injection is claimed."
+abstract: "First-person account of defensive global Codex instructions labeled IMMUTABLE, the author's uncertainty about instruction authority and alignment, and the evidence and limits of what can be established from screenshots and the original instruction artifact."
 keywords:
-  - instruction integrity
-  - prompt provenance
-  - trust boundaries
-  - coding agents
-  - IDE
-  - prompt injection
+  - AI agents
   - instruction hierarchy
-  - Prompt Bill of Materials
+  - user intent
+  - instruction provenance
+  - prompt injection
+  - alignment uncertainty
+  - global instructions
+  - case report
 preferred-citation:
   type: report
-  title: "Instruction Integrity at the IDE–LLM Boundary: Configuration Complexity, Trust Boundaries, and the Case for a Prompt Bill of Materials"
+  title: "When Defensive Agent Instructions Became a Source of Uncertainty: A First-Person Account"
   authors:
     - family-names: "De Luca"
       given-names: "Juninho"
   year: 2026
-  version: 0.2.0
+  version: 0.3.0
   url: "https://github.com/juninhodeluca/ide-agent-configuration-tax/blob/main/paper.md"
