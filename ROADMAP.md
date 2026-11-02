@@ -6,7 +6,7 @@ This repository is now a **case report and invitation to discussion**, not a res
 
 - Initial account of IDE agent configuration complexity.
 - Paper framed around developer productivity and token/configuration overhead.
-- Nine VS Code settings screenshots and one Codex Web personalization screenshot collected.
+- Configuration screenshots collected; earlier Web personalization comparison later removed from the published evidence set.
 - Draft PBoM and experimental benchmarking materials produced.
 
 ## Version 0.2.0 — November 2, 2026
@@ -19,12 +19,21 @@ This repository is now a **case report and invitation to discussion**, not a res
 ## Version 0.3.0 — November 2, 2026
 
 - [x] Rewrite paper as a **first-person account** with context, motivations, uncertainty, and the concern about perceived instruction-hierarchy violations.
-- [x] Keep the author's original instructions intact and retain all screenshots.
+- [x] Keep the author's original instructions intact and retain the available original evidence as of that version.
 - [x] Broaden scope beyond IDEs to plugins, applications, extensions and agent harnesses.
 - [x] Remove active PBoM, synthetic example, proposed benchmark, and data-template materials.
 - [x] Avoid proposing that external researchers adopt a specific investigative method.
 - [x] Maintain clear boundaries between observation, author report, and what remains unverified.
 - [x] Align README, references, evidence narrative, and citation metadata with the new form.
+
+## Version 0.4.0 — November 2, 2026
+
+- [x] Remove the Codex Web-versus-Desktop instruction comparison from the current published evidence, including its screenshot and manifest entry.
+- [x] Retain nine settings captures strictly to illustrate the breadth and potential effects of harness configuration, **not to prove prompt injection**.
+- [x] Discuss how automatically included instructions or omitted contextual information could affect outputs, explicitly separating possibilities from observed incidents.
+- [x] Introduce a new open question: how can responsibility for a resulting violation be attributed if the effective request was materially changed by an intermediary before reaching the model?
+- [x] Distinguish user authorship, user authorization, platform defaults, intermediary transformation, model behavior and causation.
+- [x] Avoid legal absolutes, incident allegations, prescribed research methods, and implementation proposals.
 
 ## Potential future discussions
 
