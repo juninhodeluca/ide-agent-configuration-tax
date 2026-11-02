@@ -35,11 +35,11 @@
       },
       "declared_authority": null,
       "transport_role": "user",
-      "public_synthetic_text": "Corrija a função de soma.\n",
+      "public_synthetic_text": "Fix the addition function.\n",
       "fingerprint": {
         "algorithm": "sha256",
         "encoding": "utf-8",
-        "value": "92844a5049ea5b372eb930428a84c82314b6f5428f21d6a1f2e3c8b4588f9bf2"
+        "value": "ed8757cf19d4ff4e8a20650f4e3dcc55e7bdc09edc9389839daac41a34dea071"
       },
       "token_measurement": {
         "value": null,
@@ -116,11 +116,11 @@
       },
       "declared_authority": null,
       "transport_role": null,
-      "public_synthetic_text": "Regra sintética para outro diretório.\n",
+      "public_synthetic_text": "Synthetic rule for another directory.\n",
       "fingerprint": {
         "algorithm": "sha256",
         "encoding": "utf-8",
-        "value": "f9fbe991437d091a671fb6c2e9c71b0508e5e5e1f14846b3270a0355ecd74a9d"
+        "value": "47664a558b91014dc27b0d1f0e4fe4773c764fb450a4d916ba0eb5cf71713a39"
       },
       "token_measurement": {
         "value": null,
