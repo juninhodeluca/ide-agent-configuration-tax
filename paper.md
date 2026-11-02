@@ -1,17 +1,17 @@
 # When Defensive Agent Instructions Became a Source of Uncertainty
-## A first-person account of global prompts, unexpected instruction sources, and the fear of conflicting with alignment rules
+## A first-person account of instruction uncertainty, alignment concerns, and responsibility for requests altered before reaching a model
 
 **Juninho De Luca**  
-**Case report and invitation to research discussion · Version 0.3.0 · November 2, 2026**  
+**Case report and invitation to research discussion · Version 0.4.0 · November 2, 2026**  
 *Written with AI assistance from the author's account and supplied artifacts. Not peer-reviewed. No allegation of a security incident or misconduct.*
 
 ## Abstract
 
-I wrote a set of unusually strict global instructions for my AI coding assistant. Their purpose was defensive: I wanted to keep my requests, operating preferences, and project boundaries from being silently displaced by instructions loaded from repositories, skills, plugins, applications, or IDE extensions. The most emphatic part of the text was headed **“IMMUTABLE CONTEXT & TOKEN RULES.”**
+I wrote unusually strict global instructions for my AI coding assistant because I wanted to prevent my original requests and working preferences from being silently displaced by repository files, skills, plugins, applications, IDE extensions, or other components of an agent harness. I called some of these instructions **“IMMUTABLE CONTEXT & TOKEN RULES.”** Later, OpenAI's publication on frontier-model misalignment made me wonder whether my defensive wording—intended to resist unexpected instructions—might itself be interpreted as an attempt to override an instruction hierarchy.
 
-Later, while reading OpenAI's October 29, 2026 article on monitoring frontier-model misalignment, I encountered descriptions of *scheming*, unauthorized objectives, and attempts to defeat oversight. I found myself asking an unexpected question: **Could the instructions I wrote to resist unanticipated instruction injection themselves be interpreted as an attempt to override the system's instruction hierarchy?**
+The uncertainty goes beyond my own configuration. The nine screenshots accompanying this account show a broad, heterogeneous settings surface capable, depending on the product, harness and active options, of influencing instruction selection, context inclusion, and transformations before a model receives an effective request. **The screenshots are not presented as evidence of prompt injection, an actual prompt rewrite, or a policy violation.** Their purpose is to illustrate why an ordinary user may find it difficult to know which instructions and information reached the model, what was omitted, and what was added.
 
-This is an account of that uncertainty. I describe what led me to write the instructions, what I observed in the interfaces and files, what I meant by “immutable,” and what I still cannot verify about the effective requests received by the model. I reproduce my original global instructions and retain screenshots as supporting artifacts. **I do not claim that the IDE rewrote my prompts, that a plugin attacked me, or that OpenAI categorized my behavior as malicious.** My invitation is to examine where user authorization and instruction authority become ambiguous when multiple components contribute to an agent's context.
+This uncertainty matters both for confidence in outputs and for accountability. **If a request is materially altered before it reaches the model, on what basis can an individual user be held responsible for a resulting violation?** I do not claim that responsibility automatically disappears, or that this happened to me. I ask how platforms can fairly distinguish user-authored intent, changes knowingly authorized by the user, changes imposed by the application, and actions taken by an agent. This is a case report and an invitation to discussion, not a vulnerability disclosure, a technical proposal, or a claim of wrongdoing.
 
 ## 1. Why I began questioning the instructions reaching my assistant
 
@@ -23,7 +23,7 @@ Some of these instructions may have been legitimate and useful. Some belonged to
 
 What concerned me most was not the number of settings. It was the possibility that **I could write one request while the model received that request together with additional instructions that materially changed its scope or execution conditions**—and that I might not know exactly where those instructions originated.
 
-The screenshots in the [evidence catalog](evidence/README.md) show configuration options for instruction inclusion, implicit context, skill-adherence prompts, nested `AGENTS.md` discovery, and compression of tool results. Some are checked, some are not. A checked box is **not** evidence that a particular instruction or transformation occurred in my session. It illustrates the number and variety of mechanisms a user may need to understand.
+The [nine settings screenshots](evidence/README.md) document the scale and diversity of the exposed configuration surface: automatic instruction inclusion, implicit context, skill-adherence prompts, nested `AGENTS.md` discovery, model-dependent options, and compression of tool results. Their role is **illustrative, not accusatory**. Enabled settings are not proof that any particular instruction was transmitted, while disabled settings are not evidence of an active effect. The difficulty is that a user may be unable to distinguish the product's *potential* behaviors from what happened during one concrete request.
 
 ## 2. The two situations that led me to write “IMMUTABLE”
 
@@ -83,59 +83,90 @@ The distinction matters. OpenAI's article describes *scheming* primarily as a be
 
 I do not have access to OpenAI's internal review records, classification signals, or monitoring decisions for these interactions. I therefore cannot establish whether anything was flagged—or even which monitoring systems, if any, would have been applicable to my specific sessions.
 
-## 5. The ambiguity I could not resolve by reading a settings page
+## 5. What I could not know about the effective request
 
-I had been calling my Codex configuration “global system instructions,” because that was how I understood its role in my working environment. But there is an important technical distinction between **instructions that are global in scope** and **messages actually delivered with the model's `system` role**.
+I had described my Codex configuration as “global system instructions,” because the rules applied globally to how I wanted to work. But **globally scoped user instructions are not necessarily system-role messages**. A published [Codex prompting guide](https://developers.openai.com/cookbook/examples/gpt-5/codex_prompting_guide) describes one path in which global and repository `AGENTS.md` guidance is delivered as user-role messages, with directory-order precedence. That distinction helps explain my uncertainty; it does not establish the exact transport role of every instruction in my own sessions.
 
-A published [Codex prompting guide](https://developers.openai.com/cookbook/examples/gpt-5/codex_prompting_guide) describes a path where global and repository `AGENTS.md` files are collected and presented as **user-role messages** in root-to-leaf order, with later directory guidance overriding earlier guidance. That is relevant to my concern; it does not prove the exact transport role of every Codex Desktop or Web configuration I used.
+Writing `IMMUTABLE` did not provide technical enforcement. Conversely, an instruction supplied through a repository, plugin, or extension is not necessarily something I intended to authorize for every task. What I lacked was a clear understanding of the actual boundary between my persistent choices and the context assembled by the application.
 
-If a source labels itself “IMMUTABLE,” that label does not by itself give it higher authority. If a repository file asks the agent to ignore a global preference, that request also does not automatically give the repository unrestricted authority over my intent. The meaning depends on the product's actual instruction-composition rules, its configuration, and any higher-priority requirements.
+### What the screenshots are evidence of
 
-I also observed a discrepancy between global instructions visible in Codex Desktop Linux and those visible in the Web settings. The Web screenshot referred to instructions synchronized between Desktop and Web, while I reported that the two surfaces displayed different texts. Without a controlled comparison of the underlying storage objects and versions, **I cannot call this a confirmed synchronization bug**. It contributed to the same uncertainty: which instructions were really in force?
+The screenshots show **numerous settings that can potentially influence the material presented to an LLM**, depending on applicability and execution path. They include options to select instruction files, discover nested guidance, attach editor or terminal context, use skill-adherence prompts, or post-process tool outputs. Some features have model- or harness-specific scope, and several visible controls were disabled.
 
-## 6. The specific uncertainty I would like researchers to examine
+I include these images to document how difficult the configuration surface can become for a developer to comprehend as a whole. **I do not include them to demonstrate prompt injection**. They do not show a malicious actor, a captured effective prompt, or any proof that my original text was rewritten.
 
-I am **not asking anyone to validate the merits of my rules**, to disable safeguards, or to accept my own view of instruction precedence as authoritative.
+An ordinary user may encounter three kinds of uncertainty:
 
-The question that remains is simpler, and more general than Codex or VS Code:
+1. **Additional instructions.** A repository file, extension, application, or plugin may contribute guidance that conflicts with a rule the user considers important. Without visibility into what was actually selected and applied, the user may not know whether the instruction conflict occurred at all.
+2. **Missing information.** A transformation of tool results, conversation history, or attached context might omit a warning, constraint, or detail relevant to the task. A shorter representation is not necessarily incorrect, but its semantic adequacy cannot be inferred merely from the existence of a compression setting.
+3. **Uncertain interpretation of the output.** If the model produces a surprising result, the user may not know whether the model misunderstood the original request, obeyed a conflicting addition, lost a critical fact during a transformation, or simply made an ordinary error.
 
-> **When a person submits a request through an agentic application, how can that person understand which additional instructions were supplied on their behalf, and whether the final instruction context still represents what they authorized?**
+These are **plausible mechanisms, not established events in my case**. A setting's presence does not prove that it ran, and a tool-output transformation is not the same thing as modifying the text the user typed. Nonetheless, not knowing which occurred makes evaluating the resulting answer much harder.
 
-The question applies wherever an application, extension, plugin, skill, repository instruction file, memory system, subagent, or agent harness participates in composing requests. The IDE was where I encountered many examples; it is not the outer boundary of the problem.
+This concern extends beyond IDEs. Any host that collects instructions or context on behalf of a user—an app, plugin, integration, skill system, subagent, or orchestration layer—can introduce a similar gap between the request as authored and the request as received.
 
-I would especially welcome help clarifying how to distinguish:
+## 6. The questions I would like researchers to examine
 
-- authorized customization from unanticipated instruction augmentation;
-- global **preferences** from genuinely higher-priority instructions;
-- conflicting legitimate instructions from prompt-injection attempts;
-- a user's defensive wording from an agent's deceptive or misaligned behavior;
-- settings that are merely enabled from instructions actually transmitted to the model.
+I am **not asking anyone to endorse my global instruction wording**, disable safeguards, or accept my own precedence rules as binding. My concern is that user intention, application behavior, model instruction hierarchy, and agent execution can become entangled without the user being able to distinguish them.
 
-These are questions, not claims that any particular provider or extension behaved improperly.
+I would welcome clarification on several questions:
+
+- When does an automatically selected instruction legitimately represent the user's authorization, and when does it merely reflect a default chosen by an application or extension?
+- How can users distinguish their original request from additional instructions, transformed context, or a summary supplied on their behalf?
+- When instructions conflict, how can a user know which one was considered applicable, and why?
+- Could defensive language such as `IMMUTABLE` reasonably be misconstrued as an attempt to evade oversight, even when the author's intent was to resist unexpected instruction changes?
+- How should unexpected outputs be interpreted if relevant information may have been omitted or conflicting instructions may have been appended?
+
+### Responsibility when the request itself may have changed
+
+A further question concerns **individual accountability for an alleged violation**.
+
+Suppose I write a legitimate request, but the effective request reaching the model contains a materially different instruction introduced by an extension or other intermediary. Or suppose a key limitation is removed during context transformation and the agent consequently produces an output or takes an action that violates a policy, contractual requirement, or my explicit instructions.
+
+**Should I be held individually responsible for what the intermediary introduced, merely because the final model request or output appears to come from my session?**
+
+I do not think that can be answered fairly by inspecting the final prompt or output alone. Such a record may show *what the model received*, without establishing *who authored it, who authorized its inclusion, who could reasonably anticipate its effects, or which alteration caused the outcome*.
+
+There are importantly different situations:
+
+| Situation | Why it matters for responsibility |
+| --- | --- |
+| I knowingly write a prohibited request | My own authored instruction is directly relevant to accountability. |
+| I knowingly enable a feature that appends particular instructions | My authorization and what the feature disclosed are relevant, although the platform may retain its own obligations. |
+| A legitimate default silently inserts guidance I did not reasonably understand | Responsibility becomes more ambiguous; visibility, notice, control, and causal contribution matter. |
+| An intermediary materially changes my request contrary to my stated instructions | A violation observed downstream should not, without more evidence, automatically be attributed to my original intent. |
+| An agent independently misinterprets a valid request or performs an unauthorized action | The effective request, agent behavior, and runtime permissions must be distinguished. |
+
+**This is not a claim of automatic legal immunity for users.** Responsibility may depend on the type of violation, the terms governing the service, the degree of user knowledge and control, foreseeability, causation, and applicable law. Nor does a conflict in instructions by itself prove that anyone breached a rule.
+
+My question is about a prerequisite for meaningful attribution: **how can the responsibility of an individual user be assessed if the available record does not distinguish the user's authored request from instructions supplied or modified by the surrounding system?**
+
+I believe that uncertainty also creates a problem for safety review. If an investigator assesses only the effective request or the model's output, a transformation introduced before inference may be mistaken for the user's own intention. Conversely, a person who actually authorized harmful instructions should not be absolved simply because several components participated in request assembly.
+
+I am asking researchers to consider this attribution problem using their own expertise and methodologies. I am not proposing an audit standard, technical implementation, or test protocol.
 
 ## 7. Evidence and limitations
 
-The repository retains the materials that motivated this account:
+The evidence deliberately has a narrow purpose: **to illustrate the number and diversity of controls that could affect a model request and why their combined effects may not be evident to an ordinary user**. It does not seek to prove the occurrence of prompt injection, tampering, user misconduct, or a model-policy violation.
 
-| Material | What it supports | What it cannot establish |
+| Material | What it supports | What it does **not** establish |
 | --- | --- | --- |
-| [Verbatim global instructions](case-studies/defensive-global-instructions.md) | The wording I used, its internal precedence claims, and the defensive purpose I describe | The transport role assigned by a specific harness or whether a model followed every rule |
-| [Nine VS Code configuration screenshots](evidence/README.md) | Visible mechanisms for instruction inclusion, implicit context and output transformations | That all features ran together, or that any one modified my typed request |
-| [Codex Web personalization screenshot](evidence/README.md) | A visible Web instruction configuration and synchronization wording | A demonstrated Desktop/Web synchronization defect |
-| [OpenAI misalignment publication](https://openai.com/pt-BR/index/how-we-detect-frontier-model-misalignment/) | The terminology and monitoring context that triggered my concern | A classification of my account, prompts, or behavior |
-| [Vendor documentation](references.md) | Published descriptions of selected instruction-loading and debugging mechanisms | A complete trace of my individual sessions |
+| [Verbatim global instructions](case-studies/defensive-global-instructions.md) | The defensive instructions I wrote, including `IMMUTABLE`, and the intention I describe | Their effective transport role, whether a model followed them, or any safety-system classification |
+| [Nine configuration screenshots](evidence/README.md) | A broad configuration surface encompassing instruction inclusion, implicit context, skills, model-specific controls, and transformations | That a particular transformation was executed, a prompt was injected, or information was actually omitted in my requests |
+| [OpenAI misalignment publication](https://openai.com/pt-BR/index/how-we-detect-frontier-model-misalignment/) | The concepts that caused me to reconsider my own instructions | That my account or behavior was identified as scheming or otherwise misaligned |
+| [Vendor documentation](references.md) | Public descriptions of some relevant instruction-composition mechanisms | A complete, session-specific trace of what the model received |
 
-I have not supplied provider-side traces, extension internals, a packet-level comparison of requests, or evidence of a successful injection. I make no allegation of misconduct or covert interception.
+I have not supplied traces from the provider, actual before-and-after model payloads, or evidence that any specific component altered one of my requests. The hypothetical responsibility scenarios above are **questions for analysis, not allegations of an incident I witnessed**.
 
 ## 8. Why I am sharing this account
 
 My concern was born from a paradox: **I wrote stronger instructions to make my agent more predictable, then became uncertain whether those same instructions might be viewed as an attempt to overcome the boundaries I was trying to respect.**
 
-The uncertainty itself is the subject of this report. I suspect that engineering and safety teams have already encountered closely related questions. I am sharing a concrete user account—together with the original wording and screenshots—so that researchers can place it in the proper technical context, correct my misunderstandings, and decide whether it merits investigation through their own methods.
+The uncertainty itself is the subject of this report. I suspect that engineering and safety teams have already encountered closely related questions. I am sharing a concrete user account—together with my original wording and screenshots showing the breadth of configuration mechanisms—so researchers can correct my misunderstandings and decide whether the distinction between user-authored intent and system-composed requests merits further consideration. I am particularly interested in how that distinction affects fair attribution of responsibility.
 
 I am not proposing a specific standard, measurement framework, benchmark, audit tool, or engineering solution here. I would value an informed discussion about the boundary between human intent, composed instructions, and agent alignment.
 
-**I would like to know not only whether an agent followed its instructions, but whether I can reasonably understand which instructions it was given in my name.**
+**I would like to know not only whether an agent followed its instructions, but which instructions it was given in my name—and how responsibility can be attributed fairly if those instructions were changed before the model received them.**
 
 ---
 
