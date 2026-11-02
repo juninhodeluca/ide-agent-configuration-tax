@@ -68,8 +68,10 @@ The repository retains ten author-supplied screenshots: nine captures of VS Code
 
 The author explicitly supplied the original Codex global instructions for publication as a research example. The text and its interpretation are in [Case Study A](../case-studies/defensive-global-instructions.md). It is evidence of the **author's stated protective intent and chosen textual guardrails**, not evidence of the message role assigned by a particular harness.
 
-## Why this evidence matters
+## Why these images accompany the account
 
-These screenshots illustrate the **potential instruction-composition and communication-integrity surface**: automatic instruction discovery, implicit attachments, transforms, per-model prompts, and customization scope. The central research question is what ultimately reaches the LLM and with what authority.
+The screenshots are included as **context for a personal uncertainty about instruction composition and authority**, not as evidence of a security incident. They illustrate how an ordinary user encounters settings governing instruction selection, implicit context, extension behavior, and transformations without necessarily knowing what reached the model in an individual session.
 
-This catalog **does not** demonstrate prompt injection, unauthorized prompt tampering, misalignment classification, daily new options, or a general productivity decline. The next evidence-producing step is the instrumented synthetic [security evaluation protocol](../docs/benchmark-protocol.md), not speculative attribution.
+The central story concerns the author's attempt to defend global operating preferences with the phrase `IMMUTABLE`, followed by concern that this defensive wording might appear to conflict with instruction hierarchy or alignment expectations. The [full first-person account](../paper.md) and [verbatim instructions](../case-studies/defensive-global-instructions.md) explain that sequence.
+
+No screenshot proves malicious injection, covert prompt rewriting, misalignment classification, or a confirmed Desktop/Web synchronization defect. **This repository does not propose any testing framework or specific investigation protocol**; it invites independent researchers to interpret the evidence through their own methods.
