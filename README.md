@@ -1,59 +1,51 @@
-# A conta da configuração de agentes em IDEs
+# Instruction Integrity at the IDE–LLM Boundary
 
-**Prompt Bill of Materials, proveniência, integridade do prompt, context/token overhead e produtividade em VS Code, Copilot e Codex.**
+**A technical position paper about instruction provenance, user intent, trust boundaries, and configuration-induced ambiguity in VS Code, Copilot, Codex, and other agentic IDE environments.**
 
-Um assistente pode economizar tempo ao implementar uma tarefa e devolver essa economia na forma de configuração, supervisão e manutenção. Este projeto transforma essa preocupação em definições verificáveis, um modelo de break-even e um protocolo de benchmark.
+Version **0.2.0** · November 2, 2026 · Juninho De Luca · English  
+Position paper / proposed methodology; not peer-reviewed; **no claim of a proven attack, unauthorized prompt rewrite, or controlled empirical result**.
 
-**Estado:** paper técnico de posição e proposta metodológica, versão 0.1.0, 31 de outubro de 2026. Não revisado por pares. **Não há resultados de benchmark próprios nesta versão.**
+## The central problem
 
-## Comece pelo paper
+An IDE-mediated LLM request may contain instructions and context that the developer never typed: repository guidance, extensions, plugins, skills, editor and terminal context, tool outputs, and transformations by the harness. Even when each component is legitimate, the developer may lack visibility into **who supplied instructions, what authority they actually received, whether the original request was preserved, and what the agent was authorized to do**.
 
-- [Paper completo em português, com abstract em inglês](paper.md).
-- [Protocolo de benchmark](docs/benchmark-protocol.md): desenho experimental, ablações, controle de versões e análise.
-- [Perfil proposto de Prompt Bill of Materials para IDEs](docs/pbom-profile.md) e [exemplo sintético em JSON](examples/pbom.example.json).
-- [Evidências e legendas das dez capturas recuperadas](evidence/README.md), incluindo as nove imagens de opções do VS Code.
-- [Fontes primárias e limites de cada referência](references.md).
-- [Dicionário e planilhas CSV vazias para coleta](benchmark/data-dictionary.md).
-- [Etapas concluídas e trabalho empírico futuro](ROADMAP.md).
+This is an **instruction-integrity and communication-security problem**, not primarily a token-efficiency or productivity problem.
 
-## O que esta versão estabelece
+> A developer should be able to determine what they asked, what else was added, which component added it, what changed in transit, and which instructions had effective authority.
 
-As capturas mostram opções que afetam descoberta de instruções, contexto implícito, saídas de ferramentas, seleção de modelo e prompts específicos por família de modelo. Algumas se aplicam apenas ao agente Local; outras mencionam Agent Host. Uma opção visível não implica que ela tenha afetado uma requisição.
+## Read the research
 
-A documentação oficial reconhece diferentes mecanismos de customização e composição de contexto. Ela fundamenta o mapa técnico; as capturas documentam um ambiente particular. Os vínculos estão no [registro de fontes](references.md).
+- **[Full paper (English)](paper.md)** — thesis, threat model, terminology, defensive alignment paradox, PBoM proposal and testable security properties.
+- **[Case Study A: Defensive Global Instructions](case-studies/defensive-global-instructions.md)** — the author's original global Codex Linux instructions, reproduced in full as an explicit example of protective `IMMUTABLE` rules.
+- **[Request-level PBoM profile](docs/pbom-profile.md)** and **[synthetic JSON illustration](examples/pbom.example.json)** — a transparency and traceability proposal, not an implemented standard.
+- **[Security-centered evaluation protocol](docs/benchmark-protocol.md)** — test conflicts, roles, transformations, source attribution and runtime enforcement using harmless fixtures.
+- **[Screenshots and evidence limitations](evidence/README.md)** — nine VS Code settings screenshots and an additional Codex Web personalization screenshot.
+- **[References and evidence ledger](references.md)** — original vendor documentation and scope of each claim.
+- **[Research roadmap](ROADMAP.md)** — what has been published and what remains to be tested.
 
-O paper propõe um PBoM por requisição: quais componentes foram considerados, incluídos, excluídos ou transformados; de onde vieram; por que foram ativados; qual autoridade foi realmente atribuída; e o que continua opaco. A proposta reconhece o projeto anterior [EqoAI/pbom-spec](https://github.com/EqoAI/pbom-spec) e **não reivindica a criação do termo nem compatibilidade com seu formato**.
+## Why the global-instructions example matters
 
-## O que ainda é hipótese
+The author encountered multiple mechanisms that could append instructions to IDE agent requests. In response, they wrote global rules labeled `IMMUTABLE` so that repository-level directions, plugins and skills would not silently override preferred scope, discovery or validation defaults. The same strict wording later raised a concern: could a defensive rule itself be interpreted as an instruction-hierarchy attack or an alignment violation?
 
-Não demonstramos que opções sejam acrescentadas diariamente, que uma configuração tenha reescrito o texto digitado, que tenha ocorrido prompt injection, que Desktop e Web devam compartilhar o mesmo armazenamento, nem que a produtividade líquida de todos os usuários tenha caído.
+The paper's answer is **conceptual, not diagnostic**:
 
-Os relatos de quase seis bilhões de tokens individuais e de quatro bilhões em quatro meses para uma equipe de 80 pessoas são motivação qualitativa. Não são telemetria auditada, amostras comparáveis ou medidas de produtividade. Os números do break-even são sintéticos.
+- A user-authored defensive policy is not by itself *scheming* or *prompt injection*.
+- A source can declare itself `IMMUTABLE` without acquiring actual system-role authority.
+- Legitimate and unexpected instructions can conflict even without an attacker.
+- Actual enforcement belongs in the harness/tool permissions, with explicit source and precedence visibility.
 
-## Pergunta central
+## What the evidence does and does not show
 
-Quanto do ganho do agente permanece depois de pagar o custo de configurá-lo, compreender seu contexto efetivo, verificar o resultado, corrigir erros e acompanhar mudanças?
+The screenshots show real configuration surfaces for automatic instruction inclusion, implicit context, model-specific prompts, skill adherence and output compaction. Some were enabled, others disabled, and some are harness-specific. They do **not** establish that the user's prompt was covertly rewritten, that every visible option affected a given request, or that an agent was flagged as misaligned.
 
-Para tarefas comparáveis e qualidade equivalente:
+No experimental capture has yet been run. The document separates observation, author report, vendor documentation, hypothesis and proposal. The prior v0.1 paper emphasized productivity break-even; **v0.2 corrects that emphasis**. Performance and adoption are secondary implications of lost trust and predictability. Anecdotal token volumes are not part of the argument.
 
-```text
-ganho líquido = tempo humano de referência
-              − trabalho humano com o agente
-              − espera que realmente ocupa capacidade
-              − configuração e auditoria
-              − implantação e manutenção amortizadas
-```
+## Intended audience and next steps
 
-Tokens, custo financeiro, tempo de calendário e atenção humana são contabilizados separadamente. Mais tokens não significam mais trabalho aceito; menos tokens também não garantem melhor resultado.
+Security researchers, IDE/agent developers, human-computer interaction researchers, provider policy teams, and maintainers of extension or plugin systems. Next steps are to validate the provenance receipt and conduct instrumented, privacy-preserving tests across concrete harness versions. **Issues will not be opened in OpenAI or Microsoft/VS Code repositories until a separate discussion stage.**
 
-## Como contribuir
+This work builds on, but does not claim to originate, the phrase [Prompt Bill of Materials](https://github.com/EqoAI/pbom-spec); no compatibility with that project's schema is asserted.
 
-Uma contribuição útil informa versões, agente/harness, modelo, configuração efetiva, tarefa, critério de aceitação, tempos e limites de observabilidade. Use os [modelos de coleta](benchmark/data-dictionary.md). Não envie segredos, conteúdo privado de projetos ou transcrições integrais sem autorização.
+## Authorship
 
-Esta publicação não abre issues nos repositórios da OpenAI, Microsoft ou VS Code. A discussão externa fica para uma etapa posterior.
-
-## Autoria e uso
-
-Juninho De Luca. Redação e pesquisa assistidas por IA, a partir de argumentos e capturas fornecidos pelo autor. A responsabilidade editorial é humana. Esta versão não representa a OpenAI, Microsoft, GitHub, Hugging Face ou METR.
-
-Para citar, use o [CITATION.cff](CITATION.cff) e indique a versão ou o commit consultado. Nenhuma licença de reutilização foi escolhida nesta versão; marcas, documentação citada e interfaces de terceiros permanecem sob os direitos dos respectivos titulares.
+Juninho De Luca. Research and drafting assisted by AI; final editorial responsibility belongs to the author. Not an official OpenAI, Microsoft, GitHub or VS Code publication. Screenshots and primary instruction artifact were supplied by the author. Use [CITATION.cff](CITATION.cff) to cite a specific version/commit. No reuse license has been selected.
