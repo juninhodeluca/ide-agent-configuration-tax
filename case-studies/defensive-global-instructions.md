@@ -257,4 +257,8 @@ Postman CLI is installed on this device, and can be used for API Engineering wor
 
 ## Limits of the case
 
-The text is evidence of what I intended to communicate, not proof that an IDE or provider transmitted it unmodified, that a plugin performed an injection, or that any alignment system considered it suspicious. The screenshots remain in the [evidence catalog](../evidence/README.md). Other researchers may assess this case through their own methods; this repository intentionally proposes no tests or technical remedy at this stage.
+The text is evidence of what I intended to communicate, not proof that an IDE or provider transmitted it unmodified, that a plugin performed an injection, or that any alignment system considered it suspicious. The nine screenshots in the [evidence catalog](../evidence/README.md) illustrate the breadth of settings that may influence instruction and context assembly; **they are not evidence of an injection incident**.
+
+The [main account](../paper.md) also raises a question about responsibility: if an intermediary materially alters an authored request before it reaches a model, how should a downstream violation be attributed to the user, the intermediary, or the agent? This is a question about user knowledge, consent, causation and the available record—not a claim of automatic innocence or legal liability.
+
+Other researchers may assess the case through their own methods. This repository proposes no tests or technical remedy at this stage.
