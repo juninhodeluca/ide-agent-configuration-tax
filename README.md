@@ -1,51 +1,37 @@
-# Instruction Integrity at the IDE–LLM Boundary
+# When Defensive Agent Instructions Became a Source of Uncertainty
 
-**A technical position paper about instruction provenance, user intent, trust boundaries, and configuration-induced ambiguity in VS Code, Copilot, Codex, and other agentic IDE environments.**
+**A first-person account of global prompts, unexpected instruction sources, and a concern about alignment.**
 
-Version **0.2.0** · November 2, 2026 · Juninho De Luca · English  
-Position paper / proposed methodology; not peer-reviewed; **no claim of a proven attack, unauthorized prompt rewrite, or controlled empirical result**.
+**Juninho De Luca · English · Version 0.3.0 (November 2, 2026)**
 
-## The central problem
+I wrote global instructions for my AI coding assistant using the term **`IMMUTABLE`**. I was trying to prevent other instruction sources—repository files, skills, plugins, extensions, automatic context and agent harnesses—from unexpectedly overriding my operating preferences or changing the meaning of my requests.
 
-An IDE-mediated LLM request may contain instructions and context that the developer never typed: repository guidance, extensions, plugins, skills, editor and terminal context, tool outputs, and transformations by the harness. Even when each component is legitimate, the developer may lack visibility into **who supplied instructions, what authority they actually received, whether the original request was preserved, and what the agent was authorized to do**.
+After reading OpenAI's article about frontier-model misalignment, I wondered whether my defensive language might itself look like an attempt to subvert the instruction hierarchy. **Had I tried to protect the user-to-model communication in a way that appeared to violate the alignment rules I wanted to respect?**
 
-This is an **instruction-integrity and communication-security problem**, not primarily a token-efficiency or productivity problem.
+This repository documents that question, how it arose, and the evidence available to me. I do not allege that a provider altered my prompts, that an injection occurred, or that a monitoring system classified my behavior as malicious.
 
-> A developer should be able to determine what they asked, what else was added, which component added it, what changed in transit, and which instructions had effective authority.
+## Read the account and accompanying material
 
-## Read the research
+- **[First-person case report (English)](paper.md)** — full narrative: the context, why I wrote the rules, what the misalignment publication made me question, and what remains uncertain.
+- **[Appendix A — My complete global Codex instructions](case-studies/defensive-global-instructions.md)** — original English text, reproduced verbatim as the primary case artifact.
+- **[Evidence catalog and screenshots](evidence/README.md)** — nine VS Code settings captures and one Codex Web personalization capture, with explicit limits of interpretation.
+- **[References](references.md)** — the OpenAI misalignment article, Codex instruction-loading guidance, and relevant vendor documentation.
+- **[Project history](ROADMAP.md)** — how this report evolved from earlier, broader technical drafts.
 
-- **[Full paper (English)](paper.md)** — thesis, threat model, terminology, defensive alignment paradox, PBoM proposal and testable security properties.
-- **[Case Study A: Defensive Global Instructions](case-studies/defensive-global-instructions.md)** — the author's original global Codex Linux instructions, reproduced in full as an explicit example of protective `IMMUTABLE` rules.
-- **[Request-level PBoM profile](docs/pbom-profile.md)** and **[synthetic JSON illustration](examples/pbom.example.json)** — a transparency and traceability proposal, not an implemented standard.
-- **[Security-centered evaluation protocol](docs/benchmark-protocol.md)** — test conflicts, roles, transformations, source attribution and runtime enforcement using harmless fixtures.
-- **[Screenshots and evidence limitations](evidence/README.md)** — nine VS Code settings screenshots and an additional Codex Web personalization screenshot.
-- **[References and evidence ledger](references.md)** — original vendor documentation and scope of each claim.
-- **[Research roadmap](ROADMAP.md)** — what has been published and what remains to be tested.
+## The question
 
-## Why the global-instructions example matters
+> When I send a request through an AI agent, how can I understand whether the instructions it ultimately received still represent what I intended and authorized?
 
-The author encountered multiple mechanisms that could append instructions to IDE agent requests. In response, they wrote global rules labeled `IMMUTABLE` so that repository-level directions, plugins and skills would not silently override preferred scope, discovery or validation defaults. The same strict wording later raised a concern: could a defensive rule itself be interpreted as an instruction-hierarchy attack or an alignment violation?
+The IDE was the setting in which I first noticed the issue, but the same uncertainty can arise in other **applications, plugins, extensions, skills, and harnesses** that contribute instructions or context.
 
-The paper's answer is **conceptual, not diagnostic**:
+I am sharing an account, **not proposing a solution**. The goal is to invite discussion with AI alignment, safety, and agent-engineering researchers and allow them to use their own analytical methods.
 
-- A user-authored defensive policy is not by itself *scheming* or *prompt injection*.
-- A source can declare itself `IMMUTABLE` without acquiring actual system-role authority.
-- Legitimate and unexpected instructions can conflict even without an attacker.
-- Actual enforcement belongs in the harness/tool permissions, with explicit source and precedence visibility.
+## Evidence and uncertainty
 
-## What the evidence does and does not show
+The screenshots document visible settings; they do not prove that any particular transformation was applied to my request. The global instructions establish the wording and purpose I intended; they do not prove the message role assigned by the harness. I have no evidence that my instructions were flagged as `scheming` or `prompt injection`.
 
-The screenshots show real configuration surfaces for automatic instruction inclusion, implicit context, model-specific prompts, skill adherence and output compaction. Some were enabled, others disabled, and some are harness-specific. They do **not** establish that the user's prompt was covertly rewritten, that every visible option affected a given request, or that an agent was flagged as misaligned.
+## Scope of this revision
 
-No experimental capture has yet been run. The document separates observation, author report, vendor documentation, hypothesis and proposal. The prior v0.1 paper emphasized productivity break-even; **v0.2 corrects that emphasis**. Performance and adoption are secondary implications of lost trust and predictability. Anecdotal token volumes are not part of the argument.
+Version 0.3 removes the previous proposed **Prompt Bill of Materials**, benchmark, and testing framework from the active branch. They are not part of this invitation and remain accessible only through Git history. This version preserves the underlying screenshots and original case text.
 
-## Intended audience and next steps
-
-Security researchers, IDE/agent developers, human-computer interaction researchers, provider policy teams, and maintainers of extension or plugin systems. Next steps are to validate the provenance receipt and conduct instrumented, privacy-preserving tests across concrete harness versions. **Issues will not be opened in OpenAI or Microsoft/VS Code repositories until a separate discussion stage.**
-
-This work builds on, but does not claim to originate, the phrase [Prompt Bill of Materials](https://github.com/EqoAI/pbom-spec); no compatibility with that project's schema is asserted.
-
-## Authorship
-
-Juninho De Luca. Research and drafting assisted by AI; final editorial responsibility belongs to the author. Not an official OpenAI, Microsoft, GitHub or VS Code publication. Screenshots and primary instruction artifact were supplied by the author. Use [CITATION.cff](CITATION.cff) to cite a specific version/commit. No reuse license has been selected.
+**Author:** Juninho De Luca. AI-assisted writing, human editorial responsibility. This is a personal case report and invitation, not a vulnerability disclosure, peer-reviewed result, or official position of OpenAI or Microsoft. No new external issues or invitations have been sent from this repository.
