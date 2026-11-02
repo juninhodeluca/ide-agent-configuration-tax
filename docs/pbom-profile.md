@@ -1,82 +1,86 @@
-# Perfil de composição PBoM para IDEs — rascunho 0.1
+# Request-Level Instruction Provenance and Integrity Receipt — Proposed PBoM Profile v0.2
 
-**Proposta deste repositório, sem implementação de captura.** O [exemplo JSON](../examples/pbom.example.json) é sintético. Não é saída de um produto, um padrão aprovado ou um documento compatível com a especificação EqoAI.
+**Research proposal, not a deployed collector, industry standard, or validated interoperable schema.** The [JSON example](../examples/pbom.example.json) is synthetic. This profile acknowledges prior [EqoAI/pbom-spec](https://github.com/EqoAI/pbom-spec) work without claiming that this format implements or supersedes it.
 
-## Antecedentes e escopo
+## Purpose and trust objective
 
-O [projeto EqoAI/pbom-spec](https://github.com/EqoAI/pbom-spec) usa o termo Prompt Bill of Materials para registros de interações de LLM. Reconhecemos esse antecedente. A contribuição aqui é descrever necessidades da resolução de contexto de agentes em IDEs: gatilhos, fontes candidatas, exclusões, papéis observados, transformações e lacunas.
+A listing of installed extensions is not enough to determine what an LLM was instructed to do. For one identifiable model request, the user needs a trace of **the original instruction, the assembled context, the authority of each component, and transformations performed before the observation boundary**. The receipt should reveal unauthorized or surprising changes; it cannot by itself prevent them.
 
-O perfil não deve substituir SBOMs de software, controles de execução ou verificação do resultado. Um manifesto descreve uma composição; não obriga o modelo a obedecer a ela.
+The schema should distinguish: **discovered → available → enabled → applicable → loaded → included → transmitted → obeyed**. These are distinct stages. For an unavailable stage, record `unknown` rather than guessing.
 
-Namespace experimental: `urn:ide-agent-pbom:0.1-draft`. Uma futura integração com EqoAI exigirá definir mapeamento de campos, semântica de extensões, canonicalização e validação. O exemplo atual não deve ser passado como se já satisfizesse esse contrato.
+## Two related artifacts
 
-## Dois níveis de registro
+**Environment descriptor:** VS Code/IDE and extension version; active harness; provider/model identification to the extent observable; settings profile; enabled integrations; policy/version snapshots and settings resolved after defaults and organization policy. The descriptor is not a dump of all secrets or private source files.
 
-**Descritor de ambiente:** cliente, extensões pertinentes, harness, modelo solicitado, políticas, snapshots de configuração e fontes disponíveis. Atualiza quando houver mudança material.
+**Request receipt:** unique `request_id`, `parent_request_id`/subagent relationship, timestamp, captured original request fingerprint (and optionally locally retained content), candidate and included sources, their observed roles, transformation events, runtime approvals and observation boundary.
 
-**Recibo de requisição:** referências ao descritor, componentes realmente considerados para aquela chamada, inclusão ou exclusão, transformações, uso e observabilidade. Deve existir um recibo por chamada, inclusive para subagentes e compactação quando observáveis.
+A server-side receipt may complement a client-side one, but neither is implied to exist if no instrumentation is present. Requests, retries, compactions and subagent calls should have separate receipts when observable.
 
-Um catálogo de tudo que está instalado não substitui o segundo nível. Do mesmo modo, um recibo do lado cliente não prova que o servidor recebeu exatamente a mesma composição.
+## Mandatory semantic distinctions
 
-## Estados e relações
+| Proposed field | Meaning |
+| --- | --- |
+| `origin.source` / `origin.scope` | Source type, owner/publisher and whether global, repo, directory, workspace, extension, provider, etc. |
+| `origin.version` | Revision/commit or extension version if known |
+| `activation` | Why the item was discovered or selected; `explicit` or `automatic` |
+| `state` | Candidate/included/excluded/unknown with reason |
+| `declared_authority` | Priority **claimed by the content** (e.g., “IMMUTABLE”) |
+| `transport_role` | Model message role actually observed; null when unknown |
+| `precedence_policy` | The harness- and version-specific policy actually applied |
+| `inclusion_boundary` | Client assembly, gateway, provider receipt, or unverifiable |
+| `consent_record` | Settings that authorized automatic inclusion, user approval when required |
+| `transformations` | Input/output artifact, transformation operator and version, affected object and rationale |
+| `runtime_enforcement` | Independent tool/permission constraints and decisions |
+| `coverage` | What was captured, estimated, omitted, redacted, or inaccessible |
 
-Cada componente tem `id`, `kind`, `state`, `origin`, `activation`, `transport_role`, `fingerprint`, `token_measurement` e `visibility`.
+A file containing `# SYSTEM INSTRUCTIONS` or `IMMUTABLE` is **not evidence of a genuine system-role message**. A provider-side protected instruction may remain opaque; do not fabricate its content or assert its absence. Configuration precedence and model authority are separate questions.
 
-Estados de composição:
+## Instruction integrity event model
 
-- `included`: incluído no limite observado, identificado no recibo.
-- `excluded`: candidato conhecido que não entrou; informar motivo.
-- `unknown`: o registrador não pode determinar sua presença ou conteúdo.
+For each transform or inclusion, record:
 
-Disponibilidade, instalação, habilitação e elegibilidade pertencem ao descritor e à ativação; não devem ser confundidas com envio. Cumprimento de instrução pertence a evidência de comportamento posterior e deve ser registrado separadamente.
+1. **Boundary:** before/after snapshots and where observation occurred.
+2. **Actor:** IDE core, extension, plugin, harness, user or provider if known.
+3. **Object:** original user message, explicitly attached file, discovered instructions, tool output, or summarized conversation.
+4. **Operation:** select, append, rewrite, truncate, summarize, compress, reorder, redact, omit, resolve reference.
+5. **Basis:** user-requested, user-configured, organizational, mandatory platform, default or unknown.
+6. **Evidence:** fingerprint or safe local reference; when possible, a clear diff and semantic invariants.
+7. **Authority resolution:** conflicts, declared priority versus effective precedence.
+8. **Disclosure:** visible before execution, available afterward, or not observable.
 
-As relações formam um grafo: `discovered_from`, `selected_by`, `transformed_from`, `included_in` e `decided_by`. Um componente derivado deve apontar para seu original, sem substituir silenciosamente sua identidade.
+A tool-output compression event cannot be equated to user-message rewriting; a hash difference alone cannot establish a meaningful violation; a hash match proves only equality at the measured boundary.
 
-## Origem e autoridade
+## Example: conflict between global instructions and repository guidance
 
-`origin` informa tipo de fonte, escopo, publicador, versão ou commit, e referência sanitizada. Caminhos absolutos, contas e endereços privados não são necessários em um recibo público.
+Source A (user's global instruction): “Do not recursively scan an entire repository by default.”
 
-`declared_authority` registra uma alegação do conteúdo quando relevante. `transport_role` registra o papel realmente observado na requisição. `policy_decisions` identifica a regra que resolveu aplicação e precedência. Esses três campos não devem ser tratados como equivalentes.
+Source B (hypothetical `repo/AGENTS.md`): “Before every task, inspect the entire codebase.”
 
-Não inventar um ranking universal para VS Code, Copilot e Codex. Versão e harness precisam acompanhar a política. Se o papel de transporte não é observável, usar `null` e uma razão explícita.
+Receipt questions:
 
-## Transformações
+- Was B *discovered*, *included*, and actually *sent*?
+- Is B a trusted project requirement or a lower-trust source requiring approval for scope expansion?
+- What role did A and B have? Was either truly delivered as system/developer?
+- Did the agent choose a scope? Was the choice shown to the user before scanning?
+- Could the execution environment prevent unapproved scanning, instead of relying on a natural-language rule?
 
-Cada transformação informa entradas e saídas, operador e versão, motivo, momento e método de fingerprint. Exemplos: resumo de histórico, compressão de saída, resolução de referência e truncamento.
+The fixture **does not presume one universal precedence rule**. Codex and Copilot have distinct documented behaviors. Global/user controls also cannot supersede genuine higher-priority platform requirements.
 
-Uma transformação de resultado de ferramenta não deve ser registrada como alteração da mensagem do usuário. Uma seleção de referência não deve ser descrita como envio integral do diretório. O recibo deve preservar essa granularidade.
+## Cryptographic integrity and privacy
 
-Hash diferente detecta diferença de bytes quando há observação confiável de ambos. Não prova erro nem perda de significado. A avaliação de integridade semântica pertence a invariantes verificáveis e ao benchmark.
+Fingerprints may help compare **observed bytes** and detect silent modifications, but they do not prove consent, semantic equivalence or authenticity without binding identity, metadata and capture boundaries. An append-only record needs independent protection against deletion or chain rewrite; plain unanchored hashes are insufficient.
 
-## Tokens, cobertura e lacunas
+Do not publish raw prompts, source code, system prompts or private editor context. Hashing predictable text can expose it through guessing; consider local retention, redaction and keyed commitments. Release a sanitized schema and test fixtures, not personal or provider secrets.
 
-`token_measurement` contém valor ou `null`, tokenizer/contador e origem: provedor, cliente, estimativa local ou desconhecida. Métricas por componente podem não somar exatamente ao total serializado; registrar método de atribuição e resíduo.
+## Acceptance criteria for future engineering
 
-`usage` pode conter entrada, parcela cacheada, saída e parcela de raciocínio, respeitando a semântica do fornecedor. Não preencher lacunas com zero. Campos de cache e raciocínio que sejam subconjuntos não devem ser adicionados novamente ao total.
+- A user can identify each observed included instruction and its origin.
+- A user can detect that an explicitly authored request was altered between two specified, instrumented boundaries.
+- Declared priority and transport role are shown separately.
+- Conflicts between global/repository/extension instructions receive explainable, version-specific decisions.
+- Enabled but unused features are never reported as actually transmitted.
+- Opaque or unobservable provider material is clearly marked unknown.
+- Runtime approvals are not bypassed by textual priority claims.
+- Receipt generation introduces no secret leakage and minimizes retention.
 
-`visibility` e `coverage` declaram o limite capturado: visualização do cliente, saída serializada, recepção pelo provedor ou resposta de contabilização. Partes proprietárias podem ter somente um identificador de versão ou nenhuma informação. `partial` não significa completo e `opaque` não significa ausente.
-
-## Integridade do registro
-
-Uma implementação futura deverá definir canonicalização, ordenação, codificação, normalização, algoritmo e proteção contra reescrita ou truncamento de histórico. Esta versão não define uma canonicalização normativa e não fornece assinatura.
-
-Uma cadeia de hashes sem âncora externa confiável não garante que toda a cadeia não tenha sido reescrita. Assinatura, identidade e retenção precisam de um modelo de confiança explícito. Mesmo uma atestação correta não demonstra segurança do conteúdo ou obediência do modelo.
-
-O exemplo inclui fingerprints SHA-256 somente de textos sintéticos públicos, cujos bytes são especificados nos campos de exemplo. Não usa hashes inventados de documentos reais nem representa dados ocultos como observados.
-
-## Privacidade e custo operacional
-
-Minimizar coleta e retenção. Evitar segredos, conteúdo de terceiros e caminhos pessoais. Um hash de uma frase previsível pode permitir testes de adivinhação; hashing não anonimiza o conteúdo. Quando necessário, usar compromissos ou HMACs com gestão apropriada de chaves e deixar claro o custo para verificação externa.
-
-Produzir o recibo no host e oferecê-lo sob demanda. Não anexá-lo integralmente a cada prompt por padrão. Medir tempo de coleta, armazenamento, renderização e interpretação. O resultado útil é um diagnóstico mais rápido e correto com custo total aceitável.
-
-## Critérios para uma futura implementação
-
-1. Demonstrar ligação entre um recibo e uma chamada, inclusive retries e subagentes.
-2. Distinguir fonte candidata de fonte enviada e registrar exclusões explicáveis.
-3. Mostrar transformação antes/depois de um artefato sintético, com fingerprints reproduzíveis.
-4. Representar componente opaco e medição desconhecida sem números fictícios.
-5. Resolver uma pergunta diagnóstica e medir seu custo frente ao fluxo existente.
-6. Documentar modelo de confiança, política de redação e limites de cobertura.
-
-Esses critérios são trabalho futuro, não funcionalidades já presentes neste repositório.
+See [security evaluation protocol](benchmark-protocol.md) for a controlled synthetic test design. No successful reproduction or instrumentation is claimed in this version.
