@@ -8,7 +8,7 @@ I wrote global instructions for my AI coding assistant using the term **`IMMUTAB
 
 Reading OpenAI's publication on frontier-model misalignment made me wonder whether this defensive wording could itself be interpreted as an attempt to override instruction hierarchy.
 
-As I reviewed my screenshots of agent settings, an additional concern became central: **the large, heterogeneous configuration surface can make it difficult to know what content actually reached the model**. Relevant information might have been omitted by a transformation; conflicting instructions might have been added from an auxiliary source. Either could affect the model's output. Those are **possibilities, not demonstrated events in my sessions**.
+The nine screenshots capture **only a few examples from a far larger set of available settings and instruction sources**, across IDEs, extensions, plugins, apps and harnesses. They are not an exhaustive survey. As I reviewed these examples, an additional concern became central: **the large, heterogeneous configuration surface can make it difficult to know what content actually reached the model**. Relevant information might have been omitted by a transformation; conflicting instructions might have been added from an auxiliary source. Either could affect the model's output. Those are **possibilities, not demonstrated events in my sessions**.
 
 That uncertainty raises a question of responsibility:
 
@@ -20,13 +20,13 @@ This question is not a claim that users are automatically free from responsibili
 
 - **[First-person account (English)](paper.md)** — context, defensive `IMMUTABLE` wording, alignment uncertainty, output uncertainty and fair attribution of responsibility.
 - **[Appendix A — Complete global agent instructions](case-studies/defensive-global-instructions.md)** — author's original English instruction text reproduced verbatim as a case artifact.
-- **[Nine settings screenshots and evidence notes](evidence/README.md)** — shows the breadth of possible instruction/context composition and transformation controls, **not an instance of prompt injection**.
+- **[Nine settings screenshots and evidence notes](evidence/README.md)** — a **small, non-exhaustive sample** of a much larger configuration ecosystem, illustrating possible request/context composition and transformation controls, **not an instance of prompt injection**.
 - **[References and evidentiary limits](references.md)** — relevant publications and a distinction between observed configuration and actual model requests.
 - **[Editorial history](ROADMAP.md)** — evolution of the report and its scope.
 
 ## What the screenshots demonstrate—and what they do not
 
-The nine images depict numerous controls potentially affecting instruction selection, context attachment, model-specific behavior and tool-output transformation. They document a complicated **configuration surface that may escape ordinary user attention**. They do not establish that any setting executed in a particular session, that an instruction was injected, that a prompt was covertly rewritten, or that relevant context was lost.
+The nine images show **just a selection** of controls potentially affecting instruction selection, context attachment, model-specific behavior and tool-output transformation. **Many other settings and integration mechanisms exist beyond the captured images**, and not all have the same effect: some may alter the effective model payload, while others control tools, permissions, or execution. They document a complicated **configuration surface that may escape ordinary user attention**. They do not establish that any setting executed in a particular session, that an instruction was injected, that a prompt was covertly rewritten, or that relevant context was lost.
 
 The original global instructions are included to explain the author's motivation and uncertainty, not to establish the existence of an exploit.
 
