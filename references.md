@@ -14,7 +14,7 @@ This reference list supports a **first-person account of instruction uncertainty
 ## Author-provided evidence
 
 - [Appendix A — complete global instructions](case-studies/defensive-global-instructions.md): the actual English instruction text supplied by the author, explicitly marked as research data rather than executable guidance.
-- [Screenshots S01–S09](evidence/README.md): nine settings examples illustrating a broad range of possible instruction inclusion, implicit context, skills, nested files, model-specific options, and tool-output transformations. **Their purpose is to document the configuration surface, not to demonstrate prompt injection or actual request modification.** Some enabled, others disabled; scopes may differ.
+- [Screenshots S01–S09](evidence/README.md): nine selected, non-exhaustive settings examples from a substantially broader configuration ecosystem, illustrating possible instruction inclusion, implicit context, skills, nested files, model-specific options, and tool-output transformations. **Their purpose is to document the configuration surface, not to demonstrate prompt injection or actual request modification.** Some enabled, others disabled; scopes may differ.
 - [Evidence manifest](evidence/manifest.json): supplied image filenames and cryptographic fingerprints.
 
 ## Limits of inference
