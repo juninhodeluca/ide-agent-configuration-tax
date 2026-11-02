@@ -1,62 +1,56 @@
-# Fontes primárias e alcance das afirmações
+# Source Register, Evidence Classes and Claim Boundaries
 
-Corte documental e consulta: **31 de outubro de 2026**. URLs de documentação podem mudar. Este registro não é uma revisão sistemática e não fornece snapshots integrais de materiais de terceiros. Referências a produtos descrevem o escopo documentado, sem demonstrar execução no ambiente das capturas.
+**Document revision: November 2, 2026.** Vendor documentation is mutable; pages linked here may change. The paper is a focused position analysis, not a systematic review or a verified vulnerability report.
 
-## Documentação oficial dos produtos e do protocolo
+## Primary documentation
 
-| ID | Fonte | Uso e limite |
+| ID | Source | Supports | Does not establish |
+| --- | --- | --- | --- |
+| D01 | [VS Code — Customize agents](https://code.visualstudio.com/docs/agent-customization/overview) | Multiple customization forms, varying harnesses, relevance and scope | That every feature ran in the user's screenshot session |
+| D02 | [VS Code — Custom instructions](https://code.visualstudio.com/docs/agent-customization/custom-instructions) | File discovery, `applyTo`, `AGENTS.md`, harness-specific behavior and conflict caveats | A universal role-precedence order |
+| D03 | [VS Code — Debug chat interactions](https://code.visualstudio.com/docs/agents/agent-troubleshooting/chat-debug-view) | Debug access to observed prompts, context and tools in supported sessions | Visibility into all provider-side assembly |
+| D04 | [VS Code — Troubleshoot AI](https://code.visualstudio.com/docs/agents/agent-troubleshooting/troubleshooting) | Discovery diagnostics and interpretation of missing customizations | Proof of hidden tampering |
+| D05 | [VS Code — Settings](https://code.visualstudio.com/docs/configure/settings) | User/workspace settings and effective configurations | Model instruction authority |
+| D06 | [VS Code — Settings Sync](https://code.visualstudio.com/docs/configure/settings-sync) | Sync mechanisms within documented scope | Whether Codex Desktop and Web store identical objects |
+| D07 | [OpenAI — Codex Prompting Guide (AGENTS.md)](https://developers.openai.com/cookbook/examples/gpt-5/codex_prompting_guide) | Codex path with discovered AGENTS instructions as user-role messages and root-to-leaf ordering | All possible Codex deployments or that a title `SYSTEM` confers system authority |
+| D08 | [OpenAI — Codex agent security](https://developers.openai.com/codex/security/) | Execution permissions and defense concepts (where supported) | That the analyzed case crossed any boundary |
+| D09 | [OpenAI — Model Spec](https://model-spec.openai.com/2025-10-27) | General chain-of-command and untrusted data distinctions (versioned document) | How a specific IDE sent one message |
+| D10 | [Model Context Protocol — Architecture 2025-06-18](https://modelcontextprotocol.io/specification/2025-06-18/architecture/index) | Host/client/server responsibilities and consent boundary | That all implementations respect those boundaries |
+| D11 | [Hugging Face — Pickle scanning](https://huggingface.co/docs/hub/security-pickle) | Risk of executable deserialization in model artifacts | Prompt injection in IDEs, or this user's environment being compromised |
+| D12 | [VS Code — Chat and diagnostics](https://code.visualstudio.com/docs/chat/chat-overview) | Debugging pathways and available configuration interfaces | Universal capture of all implicit content |
+
+The Codex security URL may change; follow the official documentation navigation if relocated. D07 specifically describes **one** published instruction-transport path; avoid treating that as a universal OpenAI system-role mapping. D09 is cited as a versioned policy text, not proof of individual user or monitor classification.
+
+## Prior work and conceptual analogies
+
+| ID | Reference | Purpose and limits |
 | --- | --- | --- |
-| D01 | Microsoft. [Understand agent customization](https://code.visualstudio.com/docs/agents/concepts/customization) | Taxonomia de customizações e distinção entre orientação e execução pelo runtime. Não mede custo humano. |
-| D02 | Microsoft. [AI settings reference](https://code.visualstudio.com/docs/agents/reference/ai-settings) | Identificação de mecanismos e escopos. Padrões da documentação não substituem os estados visíveis nas imagens. |
-| D03 | Microsoft. [Understand context in AI agents](https://code.visualstudio.com/docs/agents/concepts/context) | Composição do contexto e compactação. Não quantifica perda de informação no caso motivador. |
-| D04 | Microsoft. [Debug chat interactions](https://code.visualstudio.com/docs/agents/agent-troubleshooting/chat-debug-view) | Instrumento existente para inspecionar interações onde suportado. Não é promessa de captura de todos os componentes de servidor. |
-| D05 | Microsoft. [User and workspace settings](https://code.visualstudio.com/docs/configure/settings) | Configuração e escopos da IDE. Não define, por si só, a autoridade das mensagens do modelo. |
-| D06 | Microsoft. [Settings Sync](https://code.visualstudio.com/docs/configure/settings-sync) | Referência para investigar sincronização dentro do escopo do produto. Não comprova o episódio Desktop/Web do Codex. |
-| D07 | OpenAI. [Custom instructions with AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md) | Descoberta global e por diretório, overrides e limite de tamanho. Não autoriza inferir um papel de transporte a partir do título de um arquivo. |
-| D08 | OpenAI. [Config basics](https://learn.chatgpt.com/docs/config-file/config-basic) | Camadas de configuração, confiança e restrições de políticas. Não deve ser confundida com uma hierarquia universal de instruções. |
-| D09 | OpenAI. [Agent approvals & security](https://learn.chatgpt.com/docs/agent-approvals-security) | Controles de execução e risco de instruções não confiáveis. Não diagnostica um ataque nas capturas. |
-| D10 | OpenAI. [Observability and usage](https://developers.openai.com/api/docs/guides/agents-api/observability) | Semântica das categorias de uso e limites de contabilização da API descrita. Não representa automaticamente cobrança de assinaturas de IDE. |
-| D11 | Model Context Protocol. [Architecture, edição 2025-06-18](https://modelcontextprotocol.io/specification/2025-06-18/architecture/index) | Responsabilidades do host e separação entre clientes e servidores. Usamos uma edição identificada, sem apresentá-la como a versão mais recente do protocolo. |
-| D12 | Hugging Face. [Pickle Scanning](https://huggingface.co/docs/hub/security-pickle) | Risco da desserialização de pickle e limites de proveniência. Sustenta a analogia limitada; não demonstra exploração de um agente em IDE. |
+| P01 | [NTIA — Minimum Elements for a Software Bill of Materials](https://www.ntia.gov/report/2021/minimum-elements-software-bill-materials-sbom) (2021) | Component/relationship analogy; not a specification for agent prompts |
+| P02 | [EqoAI/pbom-spec](https://github.com/EqoAI/pbom-spec) | Prior usage of “Prompt Bill of Materials” and records of interactions/fingerprints; this repository claims neither first use nor schema compatibility |
 
-Os endereços antigos `developers.openai.com/codex/guides/agents-md/` e a navegação de configuração redirecionaram para páginas em `learn.chatgpt.com`. As referências acima usam os destinos consultados. Para D02, também foi consultada a versão Markdown disponibilizada pelo próprio site.
+The prior research draft included developer productivity studies (Peng et al.; METR) and anecdotal token figures. These are not evidence for the **instruction-integrity thesis** and are intentionally removed from the central argument. Productivity/adoption is a possible downstream implication only.
 
-## Antecedentes do PBoM
+## Author-provided case evidence
 
-| ID | Fonte | Uso e limite |
+| ID | Evidence | Warranted claim |
 | --- | --- | --- |
-| P01 | NTIA. [The Minimum Elements for a Software Bill of Materials](https://www.ntia.gov/report/2021/minimum-elements-software-bill-materials-sbom), 12/07/2021 | Base da analogia de componentes e relações. O relatório não padroniza um PBoM para IDEs. |
-| P02 | EqoAI. [pbom-spec — README](https://github.com/EqoAI/pbom-spec/blob/main/README.md) | Antecedente explícito do termo e de registros de interações com fingerprints. O perfil deste repositório é independente e não declara compatibilidade. |
+| O01 | Nine VS Code settings screenshots, S01–S09 | Visible options and check states in one captured configuration, with mixed Local/Agent Host labels |
+| O02 | One Codex Web personalization screenshot, S10 | Text in Web UI referring to synchronized Codex instructions |
+| R01 | Author's account of global instruction conflicts with plugins/repository directions | Author motivation; not an independently verified injection incident |
+| R02 | [Full defensive global instructions](case-studies/defensive-global-instructions.md) | An authentic example as supplied by the author for publication, not a representation of actual model transport or compliance |
+| R03 | Reported Desktop/Web content mismatch | A claim that warrants a controlled cross-surface test, not a demonstrated bug |
 
-P02 foi consultado pelo conteúdo do README no ramo padrão. O SHA de blob Git retornado foi `b7799098d1cec9722d68e01c85510ae83ef219d9`; ele identifica os bytes recuperados, **não é um SHA de commit**. O texto do projeto descreve limites de assinatura, autoria e âncora externa. Não usamos sua autodescrição de “standard” como evidência de padronização institucional ou adoção ampla.
+All screenshot descriptions and limits are in [evidence/README.md](evidence/README.md) and fingerprints in [evidence/manifest.json](evidence/manifest.json). We do not publish unrelated chat text.
 
-Não reivindicamos ter criado a expressão Prompt Bill of Materials. Também não realizamos levantamento exaustivo de todas as iniciativas relacionadas a AI-BOM, ML-BOM ou proveniência de prompts.
+## Claims deliberately **not** made
 
-## Estudos primários de produtividade
+- No evidence that the IDE or an extension covertly rewrote the developer's text in the reported session.
+- No evidence that prompt-injection detection or scheming monitors flagged the author's instructions.
+- No proof that all enabled toggles affected a single request; many are harness-specific.
+- No verification of daily growth in option count.
+- No claim that any specific vendor intentionally misled users, performed exfiltration or violated policy.
+- No measured comparison of token volumes, developer productivity or economic break-even.
 
-| ID | Fonte | Uso e limite |
-| --- | --- | --- |
-| E01 | Peng, S.; Kalliamvakou, E.; Cihon, P.; Demirer, M. [The Impact of AI on Developer Productivity: Evidence from GitHub Copilot](https://arxiv.org/abs/2302.06590), 2023. DOI: [10.48550/arXiv.2302.06590](https://doi.org/10.48550/arXiv.2302.06590) | Experimento com tarefa de servidor HTTP em JavaScript. Não estima o custo isolado de configuração de agentes atuais. |
-| E02 | Becker, J.; Rush, N.; Barnes, B.; Rein, D. [Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/), METR, 10/07/2025 | Experimento com desenvolvedores experientes em seus próprios projetos. Resultado histórico e contextual, não efeito universal em 2026. |
-| E03 | Becker, J.; Rush, N.; Cunningham, T.; Rein, D.; Mahamud, K. [We are Changing our Developer Productivity Experiment Design](https://metr.org/blog/2026-02-24-uplift-update/), METR, 24/02/2026 | Atualização com ressalvas sobre seleção e medição. Impede tratar estimativas anteriores como retrato corrente sem qualificação. |
+## Research integrity
 
-O paper apresenta os resultados de E01 e E02 como relatados pelos autores e os contextualiza com E03. Não combina percentuais de desenhos diferentes nem atribui os resultados ao mecanismo de configuração aqui proposto.
-
-## Material fornecido pelo autor
-
-| ID | Material | Alcance |
-| --- | --- | --- |
-| O01 | Nove capturas de configurações, catalogadas como S01–S09 | Estados visíveis e texto parcial de interface, sem versão exata ou prova de uso por requisição |
-| O02 | Captura de personalização S10 | Texto de promessa de sincronização e instruções visíveis na Web, sem par Desktop instrumentado |
-| R01 | Trechos relevantes da conversa “Corrija este e-mail” | Motivação e relatos do autor; respostas anteriores de assistente não são tomadas como confirmação factual |
-
-O [catálogo](evidence/README.md) e o [manifesto de arquivos](evidence/manifest.json) preservam a ligação entre rótulos, nomes originais e fingerprints. Não publicamos a conversa inteira, que inclui assuntos alheios ao paper.
-
-## Mapa resumido de sustentação
-
-- Famílias de configuração e diferenças de escopo: O01, D01, D02, D07 e D08.
-- Contexto, compactação e observabilidade disponível: D03, D04 e D10.
-- Proveniência, controle de execução e analogia de confiança: D09, D11 e D12; a síntese de integridade é proposta do paper.
-- Antecedente e perfil PBoM: P01 e P02; os campos específicos para IDEs são proposta independente.
-- Cautela sobre produtividade: E01–E03; o modelo econômico e os cenários são construção analítica e sintética deste trabalho.
-- Crescimento diário, reescrita da mensagem, defeito de sincronização e perda causal no caso: **não estabelecidos por estas fontes**.
+Document explicit observations, distinguish UI enablement from actual inclusion, and record the boundary at which transport roles and transformations can be verified. When a provider or harness step is not observable, record `unknown`. The [evaluation protocol](docs/benchmark-protocol.md) proposes a way to generate evidence without guessing.
