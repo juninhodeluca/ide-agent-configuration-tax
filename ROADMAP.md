@@ -1,23 +1,33 @@
-# Roadmap do paper
+# Research Roadmap
 
-## Versão 0.1.0
+## Published — v0.1.0 (October 31, 2026; initial scope)
 
-- [x] Recuperar as nove capturas de opções e a captura adicional de personalização.
-- [x] Catalogar estados visíveis, limitações e origem dos arquivos.
-- [x] Consultar fontes primárias e reconhecer o antecedente EqoAI/PBoM.
-- [x] Redigir README e paper substancial em Markdown.
-- [x] Formalizar break-even, perfil PBoM e protocolo de benchmark.
-- [x] Entregar templates vazios de coleta, sem resultados fictícios.
-- [x] Publicar o repositório GitHub com o material desta versão.
+- [x] Collect screenshots and source references.
+- [x] Publish an initial Portuguese position paper on agent-configuration complexity and productivity.
+- [x] Draft a PBoM profile and illustrative synthetic JSON.
+- [x] Publish supplementary productivity benchmarking templates.
 
-## Trabalho empírico futuro — fora desta publicação
+## Published — v0.2.0 (November 2, 2026; research correction)
 
-- [ ] Confirmar versões e obter snapshots efetivos para reprodução do caso motivador.
-- [ ] Escolher instrumento de captura e especificar sua cobertura e privacidade.
-- [ ] Pré-registrar e executar piloto; dimensionar estudo principal.
-- [ ] Avaliar governança e ablações com qualidade de aceitação equivalente.
-- [ ] Medir drift em uma série temporal de versões.
-- [ ] Definir compatibilidade ou mapeamento para iniciativas PBoM existentes.
-- [ ] Revisar autoria, licença de reutilização e possibilidade de submissão acadêmica.
+- [x] Reframe the main research problem as **user–LLM instruction integrity and provenance**.
+- [x] Rewrite the paper and README in English.
+- [x] Include the author's **verbatim defensive global Codex instructions** as a primary case study.
+- [x] Distinguish user intent, self-declared `IMMUTABLE` priority, transport role, runtime enforcement and safety alignment.
+- [x] Update the PBoM proposal to focus on source attribution, consent, transformations and conflict resolution.
+- [x] Replace the primary benchmark with a **security-centered evaluation protocol**.
+- [x] Translate evidence/source documentation and publication metadata into English.
+- [x] Remove anecdotal token volume and productivity break-even from the central thesis.
 
-Nenhuma issue será aberta nos repositórios da OpenAI, Microsoft ou VS Code nesta etapa. A decisão de iniciar discussão externa é posterior.
+## Research and engineering — not yet performed
+
+- [ ] Build a privacy-preserving **request-level provenance capture prototype**.
+- [ ] Collect versioned, effective configuration snapshots for Local/Agent Host and Codex paths.
+- [ ] Instrument source inclusion and before/after request transformations within a defined observation boundary.
+- [ ] Test benign conflict fixtures with the original case's defensive themes.
+- [ ] Quantify provenance accuracy, false alarms, precedence/role accuracy and runtime-permission enforcement.
+- [ ] Validate receipt authenticity and privacy properties (avoid raw prompt leakage).
+- [ ] Compare observed configuration drift over a predefined longitudinal window.
+- [ ] Explore interoperability with prior PBoM schemas.
+- [ ] Seek external academic/security review and decide on repository license.
+
+**No issues have been opened in OpenAI, Microsoft or VS Code repositories as part of this project.** External discussion is a distinct follow-up after the author reviews this version.
