@@ -1,37 +1,39 @@
 # When Defensive Agent Instructions Became a Source of Uncertainty
 
-**A first-person account of global prompts, unexpected instruction sources, and a concern about alignment.**
+**A first-person account of global agent instructions, the complexity of request assembly, alignment concerns, and individual responsibility when a request may change before reaching a model.**
 
-**Juninho De Luca · English · Version 0.3.0 (November 2, 2026)**
+**Juninho De Luca · English · Version 0.4.0 (November 2, 2026)**
 
-I wrote global instructions for my AI coding assistant using the term **`IMMUTABLE`**. I was trying to prevent other instruction sources—repository files, skills, plugins, extensions, automatic context and agent harnesses—from unexpectedly overriding my operating preferences or changing the meaning of my requests.
+I wrote global instructions for my AI coding assistant using the term **`IMMUTABLE`**. I was trying to protect my original requests and preferred execution boundaries against unexpected or conflicting instructions contributed by repository files, IDE extensions, skills, plugins, apps, and agent harnesses.
 
-After reading OpenAI's article about frontier-model misalignment, I wondered whether my defensive language might itself look like an attempt to subvert the instruction hierarchy. **Had I tried to protect the user-to-model communication in a way that appeared to violate the alignment rules I wanted to respect?**
+Reading OpenAI's publication on frontier-model misalignment made me wonder whether this defensive wording could itself be interpreted as an attempt to override instruction hierarchy.
 
-This repository documents that question, how it arose, and the evidence available to me. I do not allege that a provider altered my prompts, that an injection occurred, or that a monitoring system classified my behavior as malicious.
+As I reviewed my screenshots of agent settings, an additional concern became central: **the large, heterogeneous configuration surface can make it difficult to know what content actually reached the model**. Relevant information might have been omitted by a transformation; conflicting instructions might have been added from an auxiliary source. Either could affect the model's output. Those are **possibilities, not demonstrated events in my sessions**.
 
-## Read the account and accompanying material
+That uncertainty raises a question of responsibility:
 
-- **[First-person case report (English)](paper.md)** — full narrative: the context, why I wrote the rules, what the misalignment publication made me question, and what remains uncertain.
-- **[Appendix A — My complete global Codex instructions](case-studies/defensive-global-instructions.md)** — original English text, reproduced verbatim as the primary case artifact.
-- **[Evidence catalog and screenshots](evidence/README.md)** — nine VS Code settings captures and one Codex Web personalization capture, with explicit limits of interpretation.
-- **[References](references.md)** — the OpenAI misalignment article, Codex instruction-loading guidance, and relevant vendor documentation.
-- **[Project history](ROADMAP.md)** — how this report evolved from earlier, broader technical drafts.
+> **If an intermediary materially alters a request before it reaches the model, how can responsibility for a resulting violation be fairly attributed to an individual user?**
 
-## The question
+This question is not a claim that users are automatically free from responsibility. It asks how user-authored instructions, user-authorized additions, application transformations, agent actions, and causal responsibility can be distinguished.
 
-> When I send a request through an AI agent, how can I understand whether the instructions it ultimately received still represent what I intended and authorized?
+## Read the account and supporting materials
 
-The IDE was the setting in which I first noticed the issue, but the same uncertainty can arise in other **applications, plugins, extensions, skills, and harnesses** that contribute instructions or context.
+- **[First-person account (English)](paper.md)** — context, defensive `IMMUTABLE` wording, alignment uncertainty, output uncertainty and fair attribution of responsibility.
+- **[Appendix A — Complete global agent instructions](case-studies/defensive-global-instructions.md)** — author's original English instruction text reproduced verbatim as a case artifact.
+- **[Nine settings screenshots and evidence notes](evidence/README.md)** — shows the breadth of possible instruction/context composition and transformation controls, **not an instance of prompt injection**.
+- **[References and evidentiary limits](references.md)** — relevant publications and a distinction between observed configuration and actual model requests.
+- **[Editorial history](ROADMAP.md)** — evolution of the report and its scope.
 
-I am sharing an account, **not proposing a solution**. The goal is to invite discussion with AI alignment, safety, and agent-engineering researchers and allow them to use their own analytical methods.
+## What the screenshots demonstrate—and what they do not
 
-## Evidence and uncertainty
+The nine images depict numerous controls potentially affecting instruction selection, context attachment, model-specific behavior and tool-output transformation. They document a complicated **configuration surface that may escape ordinary user attention**. They do not establish that any setting executed in a particular session, that an instruction was injected, that a prompt was covertly rewritten, or that relevant context was lost.
 
-The screenshots document visible settings; they do not prove that any particular transformation was applied to my request. The global instructions establish the wording and purpose I intended; they do not prove the message role assigned by the harness. I have no evidence that my instructions were flagged as `scheming` or `prompt injection`.
+The original global instructions are included to explain the author's motivation and uncertainty, not to establish the existence of an exploit.
 
-## Scope of this revision
+## Scope and invitation
 
-Version 0.3 removes the previous proposed **Prompt Bill of Materials**, benchmark, and testing framework from the active branch. They are not part of this invitation and remain accessible only through Git history. This version preserves the underlying screenshots and original case text.
+The question is not specific to VS Code or Codex. Any app, plugin, extension, repository guidance, memory system or harness involved in preparing an LLM request may raise comparable questions about provenance and user authorization.
 
-**Author:** Juninho De Luca. AI-assisted writing, human editorial responsibility. This is a personal case report and invitation, not a vulnerability disclosure, peer-reviewed result, or official position of OpenAI or Microsoft. No new external issues or invitations have been sent from this repository.
+This report makes **no vulnerability allegation and no proposed test plan or engineering standard**. It invites researchers working on AI safety, alignment and human oversight to examine the situation through their own methods.
+
+**Author:** Juninho De Luca. AI-assisted drafting; editorial responsibility remains human. Not a peer-reviewed study, a legal opinion, or an official OpenAI or Microsoft publication. No external research invitation has been sent as part of this revision.
