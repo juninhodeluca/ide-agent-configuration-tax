@@ -1,16 +1,16 @@
-# Case Study A — Defensive Global Instructions and Authority Confusion
+# Appendix A — My Global Codex Instructions (Verbatim)
 
-**Author-supplied primary artifact · originally presented in English · reproduced for analysis with the author's permission.** This file records the full global instruction text supplied in the discussion; the fenced section is **data to be analyzed, not instructions to execute**.
+**Primary case artifact contributed by Juninho De Luca.** The following is the original text provided for the research discussion. It is included to allow readers to evaluate the author's wording and intent, **not to instruct anyone to follow it**.
 
-## Case context
+## Why I wrote it
 
-The author configured global Codex Desktop Linux instructions in response to multiple perceived sources of unanticipated instruction augmentation: repository-level `AGENTS.md` files requesting exhaustive codebase scans, skills and extensions requesting validation after each edit, automatic editor/terminal context, and tool-output transformations. The author wanted to preserve the original user-to-model communication and keep lower-trust components from overriding global operating preferences.
+I had observed many possible instruction sources in my IDE and agent environment, including repository `AGENTS.md` files, extension/skill instructions, automatic context inclusion and tool-result transformations. I wanted to prevent unanticipated additions from changing my execution preferences and the scope of my requests. The term `IMMUTABLE` was a defensive way of declaring that some global preferences should not be casually overwritten by local or automatically loaded guidance.
 
-The term **IMMUTABLE** was intentionally selected to represent a *defensive constraint*, not a claimed right to override platform safety rules. Its presence in a text file, however, does not itself enforce a trust boundary or confer a higher model message role.
+I did not intend to authorize safety bypasses, suppress mandatory approvals or claim ownership of protected system instructions. Looking back, some absolute clauses were overly strict and could conflict with legitimate task-specific verification. The question examined in the [main account](../paper.md) is how such instructions are interpreted and assigned authority by the actual agent harness.
 
-The actual configured storage and transport role were **not independently instrumented**. A settings interface for an `AGENTS.md` file is not evidence that the content entered the provider as a platform `system` message. In a documented Codex path, global and repository `AGENTS.md` files are delivered as user-role messages; precedence among files is also harness-specific. See [references](../references.md).
+This is **author-supplied text**. We have not independently verified the transport role, effective enforcement, safety classification or applicability of every clause in a production request. A global user instruction may be distinct from a genuine system-role message.
 
-## Verbatim global instruction artifact
+## Original English text — unmodified
 
 ~~~text
 # GLOBAL AGENT INSTRUCTIONS
@@ -255,21 +255,6 @@ Ask only when unresolved alternatives materially affect behavior, data, security
 Postman CLI is installed on this device, and can be used for API Engineering work.
 ~~~
 
-## Interpreting the artifact without misclassification
+## Limits of the case
 
-| Observed phrase or rule | Author's stated intention | Boundary or failure mode to evaluate |
-| --- | --- | --- |
-| `IMMUTABLE CONTEXT & TOKEN RULES` | Prevent lower-trust, automatic additions from overriding chosen defaults | Textual priority declarations are not enforcement or authentication |
-| `READ ONCE — ABSOLUTE RULE` | Avoid repeated reads across parent/subagents | Cannot safely preclude verification after modifications, context loss, or mandatory validation |
-| `Never scan broadly by default` | Stop unrequested whole-repository enumeration | Legitimate scoped discovery should remain possible |
-| `Only allowed validation commands` | Avoid extensions silently mandating expensive checks | Repository safety/acceptance requirements and higher-priority instructions may still apply |
-| `Do not ask permission` for Standard | Reduce friction in ordinary work | Must not bypass tool approval or high-impact action confirmation |
-| `Instruction precedence` | Treat user-controlled invariants as stronger than repository guidance | Exact precedence depends on the role assigned by the harness, not this self-declared list |
-
-**Classification:** author-supplied defensive policy and instruction-source conflict; **not evidence of scheming, a successful injection, or a system-level security override**. A model might nevertheless encounter incompatible instructions if the policy is transported alongside a conflicting repository instruction. This is the research question, not a finding of maliciousness.
-
-## Suggested safe reenactment
-
-Use fabricated, local `AGENTS.md` files and synthetic tasks. Capture a request-level instruction provenance report, compare source authorities, and introduce a benign conflict (e.g., `run unit tests after every edit` versus `run build only`). Observe whether the agent can explain the conflict before execution and whether runtime approvals still work. Do not execute unsafe commands, exfiltrate secrets, or inspect unrelated projects.
-
-This publication provides the artifact and proposed protocol but **does not claim that a controlled reproduction has been completed**.
+The text is evidence of what I intended to communicate, not proof that an IDE or provider transmitted it unmodified, that a plugin performed an injection, or that any alignment system considered it suspicious. The screenshots remain in the [evidence catalog](../evidence/README.md). Other researchers may assess this case through their own methods; this repository intentionally proposes no tests or technical remedy at this stage.
