@@ -1,14 +1,14 @@
 cff-version: 1.2.0
 message: "Please cite the version or commit. This is a first-person technical case report and an invitation to discussion, not a verified security incident or peer-reviewed study."
 type: software
-title: "When Defensive Agent Instructions Became a Source of Uncertainty: A First-Person Account"
+title: "When Defensive Agent Instructions Became a Source of Uncertainty: Context Composition and User Responsibility"
 authors:
   - family-names: "De Luca"
     given-names: "Juninho"
-version: 0.3.0
+version: 0.4.0
 date-released: 2026-11-02
 url: "https://github.com/juninhodeluca/ide-agent-configuration-tax"
-abstract: "First-person account of defensive global Codex instructions labeled IMMUTABLE, the author's uncertainty about instruction authority and alignment, and the evidence and limits of what can be established from screenshots and the original instruction artifact."
+abstract: "Personal account examining defensive global instructions, diverse agent configuration sources, uncertainty about effective requests and the question of fair user accountability when intermediaries materially change instructions."
 keywords:
   - AI agents
   - instruction hierarchy
@@ -20,10 +20,10 @@ keywords:
   - case report
 preferred-citation:
   type: report
-  title: "When Defensive Agent Instructions Became a Source of Uncertainty: A First-Person Account"
+  title: "When Defensive Agent Instructions Became a Source of Uncertainty: Context Composition and User Responsibility"
   authors:
     - family-names: "De Luca"
       given-names: "Juninho"
   year: 2026
-  version: 0.3.0
+  version: 0.4.0
   url: "https://github.com/juninhodeluca/ide-agent-configuration-tax/blob/main/paper.md"
