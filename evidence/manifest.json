@@ -4,7 +4,7 @@
   "retrieved_on": "2026-10-31",
   "nominal_capture_date": "2026-10-31",
   "date_basis": "original_filename; not independently authenticated",
-  "processing": "No content changes after retrieval. Supplied crops preserved.",
+  "processing": "No content changes to the nine retained screenshots; original supplied crops preserved.",
   "authentication_limit": "Hashes identify received bytes, not authenticity of the original capture.",
   "files": [
     {
@@ -87,15 +87,6 @@
       "width": 594,
       "height": 241,
       "sha256": "ed62eb94c70a49d41ed99b7f6ac45a23cf2fc6b1dcd86cdd1bf14a9cc3a67cdb"
-    },
-    {
-      "id": "S10",
-      "original_name": "image(20261031-170902).png",
-      "published_path": "screenshots/s10-web-personalization.png",
-      "bytes": 53216,
-      "width": 1203,
-      "height": 487,
-      "sha256": "c93ac55c5a59344efbe9e5505b7b080716d1091a53bc3d2fb9217fc482795c4c"
     }
   ]
 }
