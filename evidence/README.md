@@ -1,81 +1,75 @@
-# Capturas, observações e limites
+# Evidence Catalog — Settings Screenshots and Scope
 
-Dez arquivos recuperados da conversa fornecida pelo autor: nove imagens de opções do VS Code e uma captura adicional da personalização Web relacionada ao Codex. Esta é uma amostra selecionada, não um inventário completo da IDE.
+The repository retains ten author-supplied screenshots: nine captures of VS Code AI settings and one Codex Web personalization view. Original filenames, image dimensions, sizes and SHA-256 fingerprints are documented in [manifest.json](manifest.json). File names suggest October 31, 2026 but do not authenticate system time, release version, or request execution.
 
-As cópias abaixo mantêm os bytes dos anexos recebidos. Não houve recriação por IA, edição, novo recorte ou redação sobre as imagens. Os nomes originais, dimensões, tamanhos e SHA-256 estão em [manifest.json](manifest.json). Os nomes contêm a data 2026-10-31; isso não autentica relógio, fuso ou sequência de execução. O hash permite conferir identidade dos arquivos publicados, não a veracidade ou completude da captura original.
+**Critical distinction:** a visible option—even one marked enabled—does not establish that it applied to a particular request. Product descriptions sometimes expressly limit features to the **Local harness** or **Agent Host**. This is a selected screenshot series, not a complete settings audit or network trace.
 
-As versões da IDE/extensões, o sistema operacional da captura e o harness ativo em uma requisição não foram recuperados. Selos Experimental, Preview e Advanced descrevem a interface recebida. Não são uma classificação independente deste trabalho.
+## S01 — Instruction inclusion
 
-## S01 — inclusão de instruções
+![S01: Include Applying Instructions and Include Referenced Instructions enabled](screenshots/s01-instruction-inclusion.png)
 
-![S01: Include Applying Instructions e Include Referenced Instructions marcados](screenshots/s01-instruction-inclusion.png)
+**Observed:** both boxes checked; descriptions refer to Local and matching `applyTo` / referenced instruction behavior. **Not established:** which files, if any, were actually transmitted.
 
-Ambas as opções aparecem marcadas. As descrições mencionam o agente Local. A primeira fala em correspondência de `applyTo`; a segunda, em instruções referenciadas. Não é possível identificar arquivos concretos enviados ao modelo ou presumir que outro harness aplicou as mesmas opções.
+## S02 — Skills, implicit context and nested instructions
 
-## S02 — skills, contexto implícito e AGENTS.md aninhado
+![S02: Skill Adherence, implicit context, editor context and nested AGENTS.md](screenshots/s02-skills-and-implicit-context.png)
 
-![S02: Skill Adherence, contexto implícito, editor ativo e Nested Agents Md](screenshots/s02-skills-and-implicit-context.png)
+**Observed:** Skill Adherence Prompt checked; implicit `panel` and `terminal` context set to `always`; Include Active Editor checked; Use Nested Agents Md Files checked. **Important limit:** the latter describes finding/listing instructions and on-demand loading, not necessarily inclusion of every nested file on every call. Local and Agent Host scopes differ.
 
-Use Skill Adherence Prompt está marcado e menciona Local. Implicit Context: Enabled exibe `panel: always` e `terminal: always`. Include Active Editor está marcado e sua nota menciona Agent Host, como Copilot. Use Nested Agents Md Files está marcado, mas descreve listagem de instruções e carregamento sob demanda, quando há ferramenta de leitura disponível.
+## S03 — Tool output compression
 
-Esses textos não sustentam a conclusão de que todos os arquivos aninhados foram integralmente anexados a todas as requisições, nem que todos esses mecanismos estavam ativos no mesmo runtime.
+![S03: Compress Output enabled](screenshots/s03-compress-output.png)
 
-## S03 — compressão de saída
+**Observed:** `Compress Output` checked (Preview); description says post-process tool results such as `git diff`, `ls -l` or `npm install`. **Not established:** that the typed user prompt was rewritten, that data was lost, or that this feature handled a particular request.
 
-![S03: Compress Output marcado com selo Preview](screenshots/s03-compress-output.png)
+## S04 — Terminal compaction disabled
 
-A opção está marcada. A descrição fala em pós-processar saída de ferramenta para reduzir tokens antes de enviá-la ao modelo, com exemplos de comandos. É evidência de um controle de transformação de resultados; não prova reescrita do texto digitado ou perda efetiva de informação.
+![S04: Terminal Output Compaction disabled](screenshots/s04-terminal-compaction-disabled.png)
 
-## S04 — compactação do terminal desativada
+**Observed:** experimental command-output compaction unchecked. It cannot be asserted as active in this capture.
 
-![S04: Terminal Output Compaction desmarcado](screenshots/s04-terminal-compaction-disabled.png)
+## S05 — Model capability overrides
 
-Caixa desmarcada, com selo Experimental. Sua descrição trata de compactar saída de comandos e preservar informação importante. A imagem não permite atribuir a esse mecanismo qualquer compactação ocorrida na sessão.
+![S05: Model Capability Overrides](screenshots/s05-model-capability-overrides.png)
 
-## S05 — capacidade de modelos, opção avançada
+**Observed:** an advanced control describing model ID capability overrides. No active override value visible. The UI warns it is for evaluation rather than regular users.
 
-![S05: Model Capability Overrides e nota de uso para avaliação](screenshots/s05-model-capability-overrides.png)
+## S06 — Attachment summarization omission disabled
 
-Mostra um recurso avançado com configuração por identificador de modelo, referências a `family` e `thinkingHistory`, e link para `settings.json`. A descrição informa que o recurso se destina a avaliação, não à configuração regular de usuário final. Não há valor de override visível. Sua exposição contribui para a superfície apresentada, mas não prova necessidade de uso ou efeito sobre uma chamada.
+![S06: Omit File Attachment Contents unchecked](screenshots/s06-omit-attachments-disabled.png)
 
-## S06 — omissão de anexos desativada
+**Observed:** experimental omission setting unchecked. No indication attachments were actually suppressed.
 
-![S06: Omit File Attachment Contents desmarcado](screenshots/s06-omit-attachments-disabled.png)
+## S07 — Alternative model prompts and context editing disabled
 
-Omit File Attachment Contents está desmarcado, com selos Experimental e Advanced. Não há evidência de que conteúdo de anexos tenha sido omitido por essa opção no caso estudado.
+![S07: alternative prompts and context editing](screenshots/s07-alternate-prompts-disabled.png)
 
-## S07 — prompts alternativos e context editing desativados
+**Observed:** alternative Gemini and GPT prompts unchecked; Anthropic context-editing mode `off`. These are examples of an expanding **configuration surface**, not evidence of active modifications.
 
-![S07: prompts alternativos desmarcados e Context Editing em off](screenshots/s07-alternate-prompts-disabled.png)
+## S08 — Ask Agent model and code search
 
-As opções de prompt alternativo para Gemini Model F e GPT estão desmarcadas. Anthropic Context Editing: Mode está em `off`. A descrição apresenta modos de edição e alerta sobre efeitos de cache, mas esses modos não aparecem ativados. Não inferimos comportamento de modelos específicos nem tratamos seu texto como uma especificação atual de todos os provedores.
+![S08: selected Ask Agent model and agent code search](screenshots/s08-model-and-code-search.png)
 
-## S08 — modelo do Ask Agent, prompts por família e code search
+**Observed:** a model identifier present in Ask Agent field, some provider-specific prompt options unchecked, code search enabled. UI values do not prove backend model resolution.
 
-![S08: campo de modelo preenchido, prompts Claude desmarcados e Code Search marcado](screenshots/s08-model-and-code-search.png)
+## S09 — Gemini options disabled
 
-O campo Ask Agent: Model contém `gpt-6-luna`. A área Additional Tools mostra um botão de inclusão, sem entradas legíveis na captura. As opções de prompt Claude Opus 5 e Claude Sonnet 5 estão desmarcadas. Codesearch: Agent: Enabled está marcado.
+![S09: Gemini experimental options](screenshots/s09-gemini-options-disabled.png)
 
-O identificador no campo é uma observação literal, não confirmação de disponibilidade geral, escolha de modelo em outra sessão ou modelo efetivamente resolvido pelo servidor.
+**Observed:** three Gemini prompt/tool options unchecked. Some descriptions are cropped; missing text is not reconstructed.
 
-## S09 — três opções Gemini desativadas
+## S10 — Codex Web personalization
 
-![S09: Reduced Tool Use Prompt, Get Changed Files Tool e Flash Prompt Additions desmarcados](screenshots/s09-gemini-options-disabled.png)
+![S10: Codex personalized instructions in Web settings](screenshots/s10-web-personalization.png)
 
-Gemini35 Flash Reduced Tool Use Prompt, Gemini3 Get Changed Files Tool e Gemini Flash Prompt Additions aparecem desmarcados. Parte das descrições está cortada à direita. Não reconstruímos o trecho ausente nem atribuímos efeito a recursos inativos.
+**Observed:** a Web settings page promises Codex instructions synchronized between desktop and web, with text headed “GLOBAL AGENT — OPERATING SYSTEM.” The author reports that the Codex Desktop Linux editor displayed different, more recently edited instructions. **Not established:** whether both screens should reference the same storage object or whether synchronization failed; this requires a controlled bidirectional test with versions, account/host and saved timestamps.
 
-## S10 — personalização Web e alegação de sincronização
+## Primary example: defensive global instructions
 
-![S10: instruções personalizadas para Codex com texto de sincronização desktop e web](screenshots/s10-web-personalization.png)
+The author explicitly supplied the original Codex global instructions for publication as a research example. The text and its interpretation are in [Case Study A](../case-studies/defensive-global-instructions.md). It is evidence of the **author's stated protective intent and chosen textual guardrails**, not evidence of the message role assigned by a particular harness.
 
-A tela mostra “Instruções para o Codex sincronizadas entre o desktop e a web” e uma área de instruções com o título GLOBAL AGENT — OPERATING SYSTEM. Trata-se de uma captura adicional, distinta das nove imagens de opções do VS Code.
+## Why this evidence matters
 
-O autor relatou que o Desktop exibia outro conteúdo. Sem par instrumentado do Desktop, identificação do objeto de armazenamento e teste controlado, o material sustenta uma expectativa de sincronização e um relato de divergência, não um bug reproduzido.
+These screenshots illustrate the **potential instruction-composition and communication-integrity surface**: automatic instruction discovery, implicit attachments, transforms, per-model prompts, and customization scope. The central research question is what ultimately reaches the LLM and with what authority.
 
-## Argumentos do diálogo preservados no paper
-
-O autor questiona a carga de acompanhar opções, a inclusão de instruções sem compreensão de sua origem, transformações de contexto e o saldo de produtividade. O humor sobre uma função de “Full Model Setter” e a referência retórica a passar o dia configurando ilustram essa preocupação.
-
-Os volumes de tokens e o caso de uso coletivo relatado na palestra permanecem relatos sem auditoria. Não se identificam o palestrante, a equipe ou a instituição. A analogia com modelos em Hugging Face é tratada com limites técnicos no paper.
-
-As interpretações anteriores de assistente foram reavaliadas contra as capturas e as fontes primárias. Não foram promovidas a observações independentes.
+This catalog **does not** demonstrate prompt injection, unauthorized prompt tampering, misalignment classification, daily new options, or a general productivity decline. The next evidence-producing step is the instrumented synthetic [security evaluation protocol](../docs/benchmark-protocol.md), not speculative attribution.
